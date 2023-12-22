@@ -4,6 +4,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "JD-Path of Learning",
   description: "A VitePress Site",
+  base: "/learning-docs/",
   head: [
     // 添加图标
     ["link", { rel: "icon", href: "/logo.svg" }],
