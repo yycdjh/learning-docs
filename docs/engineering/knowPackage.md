@@ -1,7 +1,3 @@
----
-title 认识包package
----
-
 ## 1.npm 与 package
 
 1. 如何快速找到某个包的文档
