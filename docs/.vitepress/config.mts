@@ -39,5 +39,10 @@ function getSidebar() {
       items: [{ text: "数组", link: "" }],
       sidebarDepth: 3,
     },
+    {
+      text: "VitePress",
+      items: [{ text: "部署", link: "/vitepress/deploy" }],
+      sidebarDepth: 3,
+    },
   ];
 }
