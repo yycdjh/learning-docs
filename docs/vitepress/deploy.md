@@ -19,7 +19,7 @@ npx vitepress init
 npm run dosc:dev
 ```
 
-4. 在.vitepress 的 config 文件 defineConfig 里面添加 base
+4. 在.vitepress 的 config 文件 defineConfig 里面添加 base(创建的 gitub 仓库名)
 
 ```javascript
 export default defineConfig({
