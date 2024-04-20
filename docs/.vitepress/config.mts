@@ -49,6 +49,7 @@ function getSidebar() {
       items: [
         { text: "工厂模式", link: "/designPatterns/factory" },
         { text: "单例模式", link: "/designPatterns/single" },
+        { text: "原型模式", link: "/designPatterns/prototype" },
       ],
       sidebarDepth: 3,
     },

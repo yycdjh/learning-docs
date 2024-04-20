@@ -1,4 +1,6 @@
-## 完美实现一个月下载量超过一个亿的包: isarray
+# 完美实现一个月下载量超过一个亿的包: isarray
+
+---
 
 ```javascript
 const isArray =

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Parent() {}
+      const p = new Parent();
+      console.log(p);
+      console.log(p.__proto__);
+      console.log(Parent.prototype);
+      console.log(p.constructor.prototype === Parent.prototype);
+      console.log(p.__proto__ === Parent.prototype);
+      console.log(p.__proto__.__proto__ === Object.prototype);
+      console.log(Object.prototype.__proto__);
+      console.log(p.__proto__.__proto__.__proto__);
+
+      console.log(Parent.prototype.constructor === p.constructor);
+      console.log(p.constructor === Parent);
+      console.log(p.__proto__ === Parent.prototype);
+    </script>
+  </body>
+</html>

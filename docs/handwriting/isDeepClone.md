@@ -1,4 +1,6 @@
-## 实现简单的深拷贝
+# 实现简单的深拷贝
+
+---
 
 ```javascript
 function _deepClone(obj) {
