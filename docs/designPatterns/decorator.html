@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>装饰器</title>
+  </head>
+  <style>
+    #modal {
+      height: 200px;
+      width: 200px;
+      line-height: 200px;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid black;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <button id="open">打开</button>
+    <button id="close">关闭</button>
+
+    <script>
+      const Model = (function () {
+        let model = null;
+        return function () {
+          if (!model) {
+            model = document.createElement("div");
+            model.innerHTML = "我是全局唯一的Model";
+            model.id = "modal";
+            model.style.display = "none";
+            document.body.appendChild(model);
+          }
+          return model;
+        };
+      })();
+      // function openModal() {
+      //   const model = new Model();
+      //   model.style.display = "block";
+      // }
+
+      // function changeButtonText() {
+      //   const btn = document.getElementById("open");
+      //   btn.innerHTML = "快去登录";
+      // }
+      // function displayButton() {
+      //   const btn = document.getElementById("open");
+      //   btn.setAttribute("disabled", true);
+      // }
+
+      // function changeButtonStatus() {
+      //   changeButtonText();
+      //   displayButton();
+      // }
+      class OpenButton {
+        onClick() {
+          const model = new Model();
+          model.style.display = "block";
+        }
+      }
+      class Decorator {
+        constructor(open_button) {
+          this.open_button = open_button;
+        }
+
+        onClick() {
+          this.open_button.onClick();
+          this.changeButtonStatus();
+        }
+        changeButtonText() {
+          const btn = document.getElementById("open");
+          btn.innerHTML = "快去登录";
+        }
+        displayButton() {
+          const btn = document.getElementById("open");
+          btn.setAttribute("disabled", true);
+        }
+
+        changeButtonStatus() {
+          this.changeButtonText();
+          this.displayButton();
+        }
+      }
+
+      const openButton = new OpenButton();
+      const decorator = new Decorator(openButton);
+      document.getElementById("open").addEventListener("click", () => {
+        // const model = new Model();
+        // model.style.display = "block";
+
+        // openModal();
+        // changeButtonStatus();
+        decorator.onClick();
+      });
+      document.getElementById("close").addEventListener("click", () => {
+        const model = new Model();
+        model.style.display = "none";
+      });
+
+      function logDecorator(func) {
+        return function () {
+          console.log("Before calling the function...");
+          const result = func.apply(this, arguments);
+          console.log("After calling the function...");
+          return result;
+        };
+      }
+
+      function originalFunction() {
+        console.log("Original function is called.");
+        return "Result from original function.";
+      }
+
+      const decoratedFunction = logDecorator(originalFunction);
+
+      console.log(decoratedFunction());
+    </script>
+  </body>
+</html>

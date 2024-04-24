@@ -50,6 +50,7 @@ function getSidebar() {
         { text: "工厂模式", link: "/designPatterns/factory" },
         { text: "单例模式", link: "/designPatterns/single" },
         { text: "原型模式", link: "/designPatterns/prototype" },
+        { text: "装饰器模式", link: "/designPatterns/decorator" },
       ],
       sidebarDepth: 3,
     },
