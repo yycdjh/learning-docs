@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="father">
+      <!-- 循环十次 -->
+      <a href="#">链接1号</a>
+      <a href="#">链接2号</a>
+      <a href="#">链接3号</a>
+      <a href="#">链接4号</a>
+      <a href="#">链接5号</a>
+      <a href="#">链接6号</a>
+    </div>
+    <script>
+      // <div id="father">
+      //   <!-- 循环十次 -->
+      //   <a href="#">链接1号</a>
+      //   <a href="#">链接2号</a>
+      //   <a href="#">链接3号</a>
+      //   <a href="#">链接4号</a>
+      //   <a href="#">链接5号</a>
+      //   <a href="#">链接6号</a>
+      // </div>
+      // const aNodes = document
+      //   .getElementById("father")
+      //   .getElementsByTagName("a");
+
+      // console.log(aNodes);
+      // for (let i = 0; i < aNodes.length; i++) {
+      //   aNodes[i].addEventListener("click", function (e) {
+      //     console.log(aNodes[i]);
+      //     console.log(`${aNodes[i].innerText}被点击了`);
+      //     e.preventDefault();
+      //   });
+      // }
+      const father = document.getElementById("father");
+
+      father.addEventListener("click", function (e) {
+        console.log(e.target);
+        console.log(`${e.target.innerText}被点击了`);
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>

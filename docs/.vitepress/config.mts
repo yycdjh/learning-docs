@@ -51,6 +51,8 @@ function getSidebar() {
         { text: "单例模式", link: "/designPatterns/single" },
         { text: "原型模式", link: "/designPatterns/prototype" },
         { text: "装饰器模式", link: "/designPatterns/decorator" },
+        { text: "适配器模式", link: "/designPatterns/adapter" },
+        { text: "代理模式", link: "/designPatterns/proxy" },
       ],
       sidebarDepth: 3,
     },
