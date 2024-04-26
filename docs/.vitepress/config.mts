@@ -53,6 +53,7 @@ function getSidebar() {
         { text: "装饰器模式", link: "/designPatterns/decorator" },
         { text: "适配器模式", link: "/designPatterns/adapter" },
         { text: "代理模式", link: "/designPatterns/proxy" },
+        { text: "策略模式", link: "/designPatterns/strategy" },
       ],
       sidebarDepth: 3,
     },
