@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // class State {
+      //   constructor(state) {
+      //     this.state = state;
+      //   }
+      //   handle() {
+      //     switch (this.state) {
+      //       case "active":
+      //         console.log("处于活跃状态");
+      //         break;
+      //       case "inactive":
+      //         console.log("处于非活跃状态");
+      //         break;
+      //       default:
+      //         console.log("未知状态");
+      //     }
+      //   }
+      // }
+
+      // // 创建状态对象
+      // const state = new State("active");
+      // state.handle();
+      // state.state = "inactive";
+      // state.handle();
+      class State {
+        constructor(state) {
+          this.state = state;
+        }
+        handle() {
+          if (!this.stateToProcessor[this.state]) {
+            console.log("状态不存在");
+            return;
+          }
+          this.stateToProcessor[this.state]();
+        }
+        stateToProcessor = {
+          that: this,
+          active() {
+            console.log("处于活跃状态");
+          },
+          inactive() {
+            console.log("处于非活跃状态");
+          },
+        };
+      }
+
+      // 创建状态对象
+      const state = new State("active");
+      state.handle();
+      state.state = "inactive";
+      state.handle();
+      state.state = "123";
+      state.handle();
+    </script>
+  </body>
+</html>

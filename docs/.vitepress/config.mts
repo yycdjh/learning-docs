@@ -54,6 +54,7 @@ function getSidebar() {
         { text: "适配器模式", link: "/designPatterns/adapter" },
         { text: "代理模式", link: "/designPatterns/proxy" },
         { text: "策略模式", link: "/designPatterns/strategy" },
+        { text: "状态模式", link: "/designPatterns/state" },
       ],
       sidebarDepth: 3,
     },
