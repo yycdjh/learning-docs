@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 定义发布者类
+      class Publisher {
+        constructor() {
+          this.observers = [];
+          console.log("Publisher created");
+        }
+
+        // 新增订阅者
+        add(observer) {
+          console.log("Publisher add");
+          this.observers.push(observer);
+        }
+
+        // 移出订阅者
+        remove(observer) {
+          console.log("Publisher remove");
+          this.observers = this.observers.filter((o) => o !== observer);
+        }
+
+        // 通知所有订阅者
+
+        notify(data) {
+          console.log("Publisher notify");
+          this.observers.forEach((o) => {
+            o.update(data);
+          });
+        }
+      }
+
+      // 定义订阅者类
+      class Observer {
+        constructor() {
+          console.log("Observer created");
+        }
+
+        update(data) {
+          console.log("Observer update");
+        }
+      }
+
+      // 定义一个具体的发布类
+      class ConcreatePublish extends Publisher {
+        constructor() {
+          super();
+          this.state = "";
+        }
+
+        setState(newState) {
+          this.state = newState;
+          this.notify(newState);
+        }
+      }
+
+      class ConcreateObserver extends Observer {
+        update(data) {
+          console.log("Observer update:" + data);
+        }
+      }
+
+      const publish = new ConcreatePublish();
+      const observer1 = new ConcreateObserver();
+      const observer2 = new ConcreateObserver();
+
+      publish.add(observer1);
+      publish.add(observer2);
+      publish.setState("active");
+    </script>
+  </body>
+</html>

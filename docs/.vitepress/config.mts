@@ -55,6 +55,7 @@ function getSidebar() {
         { text: "代理模式", link: "/designPatterns/proxy" },
         { text: "策略模式", link: "/designPatterns/strategy" },
         { text: "状态模式", link: "/designPatterns/state" },
+        { text: "观察者模式", link: "/designPatterns/observer" },
       ],
       sidebarDepth: 3,
     },
