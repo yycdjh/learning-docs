@@ -2,6 +2,8 @@
 
 > 用于实现对象之间的解耦通信，让一个对象（被观察者，Subject）可以通知多个依赖它的对象（观察者，Observers）关于状态变化的情况。这种模式允许你定义一种一对多的依赖关系，当被依赖的对象状态改变时，所有依赖于它的对象都会得到通知并自动更新。
 
+1. 简单的观察者模式
+
 ```javascript
 // 定义发布者类
 class Publisher {
@@ -69,4 +71,77 @@ const observer2 = new ConcreateObserver();
 publish.add(observer1);
 publish.add(observer2);
 publish.setState("active");
+```
+
+2. 简单的发布-订阅模式(Event bus)
+
+```javascript
+class EventEmitter {
+  constructor() {
+    // handlers 是一个map， 用于存储事件与回调之间的对应关系
+    this.handlers = {};
+  }
+
+  // on方法用于安装事件监听器，它接受目标事件名和回调函数作为参数
+  on(eventName, cb) {
+    // 先检查一下目标事件名有没有对应的监听函数队列
+    if (!this.handlers[eventName]) {
+      // 如果没有，那么首先初始化一个监听函数队列
+      this.handlers[eventName] = [];
+    }
+
+    // 把回调函数推入目标事件的监听函数队列里去
+    this.handlers[eventName].push(cb);
+  }
+
+  // 用于触发某个事件，它接受目标事件名和回调函数作为参数
+  emit(eventName, ...args) {
+    // 检查一下目标事件名有没有对应的监听函数队列
+    if (this.handlers[eventName]) {
+      // 这里需要做一次浅拷贝、主要目的是为了避免同个once安装的监听器在移出过程中出现顺序问题
+      const handler = this.handlers[eventName].slice();
+
+      // 逐个调用队列里的回调函数
+      handler.forEach((callback) => {
+        callback(...args);
+      });
+    }
+  }
+
+  // 移出某个事件回调队列里指定的回调函数
+  off(eventName, cb) {
+    const callbacks = this.handlers[eventName];
+    const index = callbacks.indexOf(cb);
+
+    if (index !== -1) {
+      callbacks.splice(index, 1);
+    }
+  }
+
+  // once方法用于为事件单次注册监听器
+  once(eventName, cb) {
+    const wrapper = (...args) => {
+      cb(...args);
+      this.off(eventName, wrapper);
+    };
+    this.on(eventName, wrapper);
+  }
+}
+
+const eventBus = new EventEmitter();
+
+const cb = (data) => {
+  console.log(data);
+};
+eventBus.on("test", cb);
+
+eventBus.once("test1", (data) => {
+  console.log(data);
+});
+
+eventBus.emit("test", "hello world");
+
+eventBus.off("test", cb);
+eventBus.emit("test", "hello world");
+eventBus.emit("test1", "hello world1");
 ```

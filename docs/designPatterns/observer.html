@@ -7,72 +7,141 @@
   </head>
   <body>
     <script>
-      // 定义发布者类
-      class Publisher {
+      // // 定义发布者类
+      // class Publisher {
+      //   constructor() {
+      //     this.observers = [];
+      //     console.log("Publisher created");
+      //   }
+
+      //   // 新增订阅者
+      //   add(observer) {
+      //     console.log("Publisher add");
+      //     this.observers.push(observer);
+      //   }
+
+      //   // 移出订阅者
+      //   remove(observer) {
+      //     console.log("Publisher remove");
+      //     this.observers = this.observers.filter((o) => o !== observer);
+      //   }
+
+      //   // 通知所有订阅者
+
+      //   notify(data) {
+      //     console.log("Publisher notify");
+      //     this.observers.forEach((o) => {
+      //       o.update(data);
+      //     });
+      //   }
+      // }
+
+      // // 定义订阅者类
+      // class Observer {
+      //   constructor() {
+      //     console.log("Observer created");
+      //   }
+
+      //   update(data) {
+      //     console.log("Observer update");
+      //   }
+      // }
+
+      // // 定义一个具体的发布类
+      // class ConcreatePublish extends Publisher {
+      //   constructor() {
+      //     super();
+      //     this.state = "";
+      //   }
+
+      //   setState(newState) {
+      //     this.state = newState;
+      //     this.notify(newState);
+      //   }
+      // }
+
+      // class ConcreateObserver extends Observer {
+      //   update(data) {
+      //     console.log("Observer update:" + data);
+      //   }
+      // }
+
+      // const publish = new ConcreatePublish();
+      // const observer1 = new ConcreateObserver();
+      // const observer2 = new ConcreateObserver();
+
+      // publish.add(observer1);
+      // publish.add(observer2);
+      // publish.setState("active");
+
+      class EventEmitter {
         constructor() {
-          this.observers = [];
-          console.log("Publisher created");
+          // handlers 是一个map， 用于存储事件与回调之间的对应关系
+          this.handlers = {};
         }
 
-        // 新增订阅者
-        add(observer) {
-          console.log("Publisher add");
-          this.observers.push(observer);
+        // on方法用于安装事件监听器，它接受目标事件名和回调函数作为参数
+        on(eventName, cb) {
+          // 先检查一下目标事件名有没有对应的监听函数队列
+          if (!this.handlers[eventName]) {
+            // 如果没有，那么首先初始化一个监听函数队列
+            this.handlers[eventName] = [];
+          }
+
+          // 把回调函数推入目标事件的监听函数队列里去
+          this.handlers[eventName].push(cb);
         }
 
-        // 移出订阅者
-        remove(observer) {
-          console.log("Publisher remove");
-          this.observers = this.observers.filter((o) => o !== observer);
+        // 用于触发某个事件，它接受目标事件名和回调函数作为参数
+        emit(eventName, ...args) {
+          // 检查一下目标事件名有没有对应的监听函数队列
+          if (this.handlers[eventName]) {
+            // 这里需要做一次浅拷贝、主要目的是为了避免同个once安装的监听器在移出过程中出现顺序问题
+            const handler = this.handlers[eventName].slice();
+
+            // 逐个调用队列里的回调函数
+            handler.forEach((callback) => {
+              callback(...args);
+            });
+          }
         }
 
-        // 通知所有订阅者
+        // 移出某个事件回调队列里指定的回调函数
+        off(eventName, cb) {
+          const callbacks = this.handlers[eventName];
+          const index = callbacks.indexOf(cb);
 
-        notify(data) {
-          console.log("Publisher notify");
-          this.observers.forEach((o) => {
-            o.update(data);
-          });
-        }
-      }
-
-      // 定义订阅者类
-      class Observer {
-        constructor() {
-          console.log("Observer created");
+          if (index !== -1) {
+            callbacks.splice(index, 1);
+          }
         }
 
-        update(data) {
-          console.log("Observer update");
-        }
-      }
-
-      // 定义一个具体的发布类
-      class ConcreatePublish extends Publisher {
-        constructor() {
-          super();
-          this.state = "";
-        }
-
-        setState(newState) {
-          this.state = newState;
-          this.notify(newState);
-        }
-      }
-
-      class ConcreateObserver extends Observer {
-        update(data) {
-          console.log("Observer update:" + data);
+        // once方法用于为事件单次注册监听器
+        once(eventName, cb) {
+          const wrapper = (...args) => {
+            cb(...args);
+            this.off(eventName, wrapper);
+          };
+          this.on(eventName, wrapper);
         }
       }
 
-      const publish = new ConcreatePublish();
-      const observer1 = new ConcreateObserver();
-      const observer2 = new ConcreateObserver();
+      const eventBus = new EventEmitter();
 
-      publish.add(observer1);
-      publish.add(observer2);
-      publish.setState("active");
+      const cb = (data) => {
+        console.log(data);
+      };
+      eventBus.on("test", cb);
+
+      eventBus.once("test1", (data) => {
+        console.log(data);
+      });
+
+      eventBus.emit("test", "hello world");
+
+      eventBus.off("test", cb);
+      eventBus.emit("test", "hello world");
+      eventBus.emit("test1", "hello world1");
     </script>
   </body>
 </html>
