@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // es5
+      // function iteratorGenerator(list) {
+      //   // idx记录当前访问的索引
+      //   var idx = 0;
+      //   // len记录传入集合的长度
+      //   var len = list.length;
+      //   return {
+      //     // 自定义next方法
+      //     next: function () {
+      //       // 如果索引还没有超出集合长度，done为false
+      //       var done = idx >= len;
+      //       // 如果done为false，则可以继续取值
+      //       var value = !done ? list[idx++] : undefined;
+
+      //       // 将当前值与遍历是否完毕（done）返回
+      //       return {
+      //         done: done,
+      //         value: value,
+      //       };
+      //     },
+      //   };
+      // }
+      // const arr = [1, 2, 3, 4, 5];
+      // const iterator = iteratorGenerator(arr);
+      // console.log(iterator.next());
+      // console.log(iterator.next());
+      // console.log(iterator.next());
+
+      // es6
+      // class ArrayIterator {
+      //   constructor(array) {
+      //     this.array = array;
+      //     this.index = 0;
+      //   }
+
+      //   // 实现迭代器协议
+      //   *[Symbol.iterator]() {
+      //     while (this.index < this.array.length) {
+      //       yield this.array[this.index++];
+      //     }
+      //   }
+      // }
+
+      // // 使用示例
+      // const myArray = [1, 2, 3, 4, 5];
+      // const iterator = new ArrayIterator(myArray);
+
+      // // 使用for...of循环遍历
+      // // for (const value of iterator) {
+      // //   console.log(value);
+      // // }
+      // iterator.next();
+      const obj = {
+        a: 1,
+        b: 2,
+        *[Symbol.iterator]() {
+          for (const key in this) {
+            if (Object.prototype.hasOwnProperty.call(this, key)) {
+              yield [key, this[key]];
+            }
+          }
+        },
+      };
+
+      for (const item of obj) {
+        console.log(item);
+      }
+      function* generateNumbers() {
+        yield 1;
+        yield 2;
+        yield 3;
+      }
+
+      const gen = generateNumbers();
+      for (let value of gen) {
+        console.log(value);
+      }
+    </script>
+  </body>
+</html>

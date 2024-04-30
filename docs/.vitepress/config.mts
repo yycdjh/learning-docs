@@ -56,6 +56,7 @@ function getSidebar() {
         { text: "策略模式", link: "/designPatterns/strategy" },
         { text: "状态模式", link: "/designPatterns/state" },
         { text: "观察者模式", link: "/designPatterns/observer" },
+        { text: "迭代器模式", link: "/designPatterns/iterator" },
       ],
       sidebarDepth: 3,
     },
