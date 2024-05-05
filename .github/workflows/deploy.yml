@@ -29,9 +29,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: pnpm/action-setup@v3
         with:
-          uses: pnpm/action-setup@v3
+          fetch-depth: 0 # Not needed if lastUpdated is not enabled
       # - uses: pnpm/action-setup@v3 # Uncomment this if you're using pnpm
       # - uses: oven-sh/setup-bun@v1 # Uncomment this if you're using Bun
       - name: Setup Node
