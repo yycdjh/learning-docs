@@ -22,6 +22,18 @@ export default defineConfig({
     },
 
     socialLinks: [{ icon: "github", link: "https://github.com/yycdjh" }],
+    // 自定义配置上次更新的文本和日期格式
+    lastUpdated: {
+      text: "最后更新于",
+      formatOptions: {
+        dateStyle: "short",
+        timeStyle: "medium",
+      },
+    },
+    // 开启本地搜索
+    search: {
+      provider: "local",
+    },
   },
 });
 function getSidebar() {
