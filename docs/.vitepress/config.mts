@@ -7,7 +7,7 @@ export default defineConfig({
   base: "/learning-docs/",
   head: [
     // 添加图标
-    ["link", { rel: "icon", href: "/logo.svg" }],
+    ["link", { rel: "icon", type: "image/x-icon", href: "/logo.svg" }],
   ],
   themeConfig: {
     logo: "/logo.svg",
