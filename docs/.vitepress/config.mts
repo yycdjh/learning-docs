@@ -77,6 +77,7 @@ function getSidebar() {
       items: [
         { text: "如何判断某一个值数组", link: "/handwriting/isArray" },
         { text: "深拷贝", link: "/handwriting/isDeepClone" },
+        { text: "防抖", link: "/handwriting/isDebounce" },
       ],
 
       sidebarDepth: 3,
