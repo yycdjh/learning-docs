@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class EventEmitter {
+      constructor() {
+        // map，用于存储事件与回调之间的对应关系
+        this.handlers = {};
+      }
+
+      on(eventName, cb) {
+        //
+        if (!this.handlers[eventName]) {
+          this.handlers[eventName] = [];
+        }
+        this.handlers[eventName].push(cb);
+      }
+
+      emit(eventName, ...args) {
+        if (this.handlers[eventName]) {
+          const handler = this.handlers[eventName];
+
+          handler.forEach((callback) => {
+            callback(args);
+          });
+        }
+      }
+
+      off(eventName, cb) {
+        this.handlers[eventName] = this.handlers[eventName].filter((callback) => {
+          callback !== cb;
+        });
+      }
+
+      once(eventName, cb) {
+        const wrapper = (...args) => {
+          this.off(eventName, wrapper);
+          cb(...args);
+        };
+        this.on(eventName, wrapper);
+      }
+    }
+    const eventBus = new EventEmitter();
+    const callback = (data) => {
+      console.log(data);
+    }
+    const callback1 = (data1) => {
+      let a = 0
+      console.log(data1);
+    }
+    eventBus.on("test", callback);
+    eventBus.once('test', callback1)
+    console.log(eventBus.handlers)
+    eventBus.emit("test", "hello world");
+    console.log(eventBus.handlers)
+    // eventBus.emit("test", "hello world1");
+
+    // eventBus.off("test", callback);
+    // eventBus.emit("test", "hello world4555");
+    // console.log(eventBus.handlers)
+
+
+    // eventBus.emit("test", "hello world1");
+    // console.log(eventBus.handlers)
+
+  </script>
+</body>
+
+</html>

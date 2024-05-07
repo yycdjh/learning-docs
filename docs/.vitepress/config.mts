@@ -83,5 +83,10 @@ function getSidebar() {
 
       sidebarDepth: 3,
     },
+    {
+      text: "Vitest",
+      items: [{ text: "test", link: "/vitest/test" }],
+      sidebarDepth: 3,
+    },
   ];
 }
