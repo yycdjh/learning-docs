@@ -51,3 +51,22 @@ test("skipped test", (context) => {
   assert.equal(Math.sqrt(4), 3);
 });
 ```
+
+## test.only
+
+> 使用 test.only 进运行给定测试套件中的某些测试.这在调试时非常有用.
+
+```javascript
+test.only("only test", () => {
+  //// Only this test (and others marked with only) are run
+});
+```
+
+## test.todo
+
+> 使用 test.todo 来存根测试,以便稍后测试。测试报告中将显示这一个条目,以便知道还有多少测试需要执行
+
+```javascript
+// An entry will be shown in the report for this test
+test.todo("unimplemented test");
+```

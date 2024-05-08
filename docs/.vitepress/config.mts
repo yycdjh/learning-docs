@@ -79,6 +79,7 @@ function getSidebar() {
         { text: "深拷贝", link: "/handwriting/isDeepClone" },
         { text: "防抖", link: "/handwriting/isDebounce" },
         { text: "节流", link: "/handwriting/isThrottle" },
+        { text: "发布-订阅", link: "/handwriting/eventEmitter" },
       ],
 
       sidebarDepth: 3,
