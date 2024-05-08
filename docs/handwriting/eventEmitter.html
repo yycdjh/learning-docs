@@ -34,9 +34,9 @@
       }
 
       off(eventName, cb) {
-        this.handlers[eventName] = this.handlers[eventName].filter((callback) => {
-          callback !== cb;
-        });
+        this.handlers[eventName] = this.handlers[eventName].filter((callback) =>
+          callback !== cb
+        );
       }
 
       once(eventName, cb) {
@@ -57,18 +57,11 @@
     }
     eventBus.on("test", callback);
     eventBus.once('test', callback1)
-    console.log(eventBus.handlers)
     eventBus.emit("test", "hello world");
-    console.log(eventBus.handlers)
-    // eventBus.emit("test", "hello world1");
+    eventBus.emit("test", "hello world1");
 
-    // eventBus.off("test", callback);
-    // eventBus.emit("test", "hello world4555");
-    // console.log(eventBus.handlers)
-
-
-    // eventBus.emit("test", "hello world1");
-    // console.log(eventBus.handlers)
+    eventBus.off("test", callback);
+    eventBus.emit("test", "hello world4555");
 
   </script>
 </body>

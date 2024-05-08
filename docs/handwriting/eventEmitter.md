@@ -32,7 +32,7 @@ class EventEmitter {
 
   off(eventName, cb) {
     this.handlers[eventName] = this.handlers[eventName].filter((callback) => {
-      callback !== cb;
+      return callback !== cb;
     });
   }
 
