@@ -1,0 +1,37 @@
+# 资源
+
+## 1、资源与 URI
+
+- 什么是 URI
+
+  - Uniform Resource Identifiers,统一资源标识符。适用于多种协议
+  - 由协议（protocol）、主机(host)、端口(port)、路径(path)、查询字符串(query)、片段(fragment、hash)组成
+
+- 了解 URL API 与 URLSearchParams API
+  - 通过 URL API 可以解析 URL 的各个部分
+  - 通过 URLSearchParams 用以处理 URL 的查询字符串
+
+## 2、MIME
+
+> 浏览器通常使用 MIME 类型而不是文件拓展名来决定如何处理 URL，因此 Web 服务器在 Content-Type 响应头中添加正确的 MIME 类型非常重要.如果配置不正确，浏览器可能会曲解文件内容，网站将无法正常工作，并且下载的文件也可能被错误处理
+
+- 有哪些图片常见的 MIME Type
+
+  1. .jpg .jpeg, image/jpeg
+  2. .png， image/png
+  3. .git, image/gif
+  4. .ico, image/vnd.microsoft.icon
+  5. .svg, image/svg+xml
+
+- 有哪些前端常见的 MIME Type
+
+  1. HTML 文档： text/html
+  2. CSS 样式：text/css
+  3. javacript 文件： application/javascript text/javascript
+  4. Json application/json
+  5. 图片
+  6. 视频
+  7. 音频
+  8. 字体
+
+  > > MIME 类型并不总是唯一，对于某些文件类型可能存在多个可接受的 MIME 类型，例如 JavaScript 文件可以使用 application/javascript 或 text/javascript。

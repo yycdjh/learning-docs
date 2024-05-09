@@ -47,6 +47,11 @@ function getSidebar() {
       sidebarDepth: 3,
     },
     {
+      text: "http训练营",
+      items: [{ text: "资源", link: "/http/resource" }],
+      sidebarDepth: 3,
+    },
+    {
       text: "算法",
       items: [{ text: "数组", link: "" }],
       sidebarDepth: 3,
