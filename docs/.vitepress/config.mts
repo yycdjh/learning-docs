@@ -48,7 +48,10 @@ function getSidebar() {
     },
     {
       text: "http训练营",
-      items: [{ text: "资源", link: "/http/resource" }],
+      items: [
+        { text: "资源", link: "/http/resource" },
+        { text: "报文", link: "/http/message" },
+      ],
       sidebarDepth: 3,
     },
     {
