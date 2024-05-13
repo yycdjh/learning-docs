@@ -48,3 +48,16 @@ X-Xss-Protection: 1;mode=block
 4. 我们如何查看某次请求的 http 报文
 
    -curl -v https://www.baidu.com
+
+## nc/telnet
+
+1. 安装 nc/telnet 命令行工具(windows)
+   - https://nmap.org/download.html#windows 安装 nmap 使用 ncat 测试
+   - 在控制面板->程序与功能->启动或关闭 windows 功能->开启 telnet 客户端
+1. 通过 nc/telnet 使用 HTTP 报文与网站进行通信
+
+   ![nc-get](nc-get.png)
+
+1. 通过 nc/telnet 发送 GET/POST 报文
+
+   ![nc-post](nc-post.png)
