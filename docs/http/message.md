@@ -49,7 +49,7 @@ X-Xss-Protection: 1;mode=block
 
    -curl -v https://www.baidu.com
 
-## nc/telnet
+## http 报文模拟(nc/telnet)
 
 1. 安装 nc/telnet 命令行工具(windows)
    - https://nmap.org/download.html#windows 安装 nmap 使用 ncat 测试
@@ -61,3 +61,15 @@ X-Xss-Protection: 1;mode=block
 1. 通过 nc/telnet 发送 GET/POST 报文
 
    ![nc-post](nc-post.png)
+
+## Chrome Devtools
+
+1. 在开发环境调试 http 请求时，如何只筛选出 locahost 上的所有请求
+   - domain:localhost
+2. 控制台左下角，transferred size 与 resource sieze 有何区别
+   - transferred 压缩后的体积，有多少资源进行了传输， resource 未压缩时体积
+3. 如何看出某个网站首页加载了多少个请求
+   - 在首页的时候打开网络控制面板，查看底部状态栏，requests 查看加载度搜请求
+     ![requests](requests.png)
+4. 如何在控制台中显示 HTTP 协议一列
+   - 右键网络控制台 - header options 选项 - 勾选 protocal
