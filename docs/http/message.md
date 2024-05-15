@@ -73,3 +73,17 @@ X-Xss-Protection: 1;mode=block
      ![requests](requests.png)
 4. 如何在控制台中显示 HTTP 协议一列
    - 右键网络控制台 - header options 选项 - 勾选 protocal
+
+## curl
+
+1. curl/httpie 如何发送一个 GET 请求
+   - curl https://httpbin.org/get
+2. curl/httpie 如何发送 JSON 数据给服务器端
+   - curl https://httpbin.org/post -X POST -H "a:3" -H "content-type: application/json" -d "{"name":"jd"}"
+3. curl/httpie 如何发送 FORM 数据给服务器端
+   - curl httpbin.org/post -X POST -H "a:3" -d name=jd
+4. curl/httpie 如何追踪重定向路径
+   - curl --location http://zhihu.com 查看重定向两次后请求到的数据
+   - curl --head --location http://zhihu.com 可以追踪到重定向之后的路径
+5. curl/httpie 如何仅返回 Response Header
+   - curl --head https:/httpbin.org
