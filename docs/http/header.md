@@ -32,7 +32,7 @@
    - If-Madified-Since：与 304 状态码相关
    - If-Range： 与 206 状态码相关
 3. 内容协商（告知服务器端我需要什么样的资源，比如语言以及压缩编码，如果服务器无法返回对应的资源，则返回 406 状态码）
-   - Accept: 客户端需要什么样的资源，比如 json 与
+   - Accept: 客户端需要什么样的资源，比如 json 与 html
    - Accept-Encoding: 客户端需要什么样的压缩编码， 比如 gzip 与 br，如果不配做则可能不进行压缩
    - Accept-Language: 客户端需要什么样的语言，比如 en-US 和 zh-CN
 4. 认证相关
