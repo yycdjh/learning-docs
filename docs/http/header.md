@@ -106,3 +106,31 @@ Connection: close
    - 1. 可以通过 ip + host 方式请求（dig +short） 获取其 ip 地址
      - 1. curl 76.223.126.88 -H "Host: http.devtool.tech"
 3. 通过浏览器控制台，查看各个网站的 Host/:authoriry 请求头
+
+## 内容协商
+
+1. 什么是内容协商
+   - 告知服务器端我需要什么样的资源，比如语言以及压缩编码，如果服务器无法返回对应的资源，则返回 406 状态码
+1. Accept 如何配置权重
+
+```javascript
+Accpet: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+
+//其中q为quality, 默认为1
+text/html 1
+application/xhtml+xml 1
+application/xml 0.9
+/ 0.8
+
+HTTP Header中， 逗号，拥有比分号；更高的优先级，根据逗号分组，而不是分号分组。
+```
+
+3. Accept/Accept-Language/Accept-Encoding 三个请求头的应用场景
+   - Accept: 客户端需要什么样的资源，比如 json 与 html
+   - Accept-Encoding: 客户端需要什么样的压缩编码， 比如 gzip 与 br，如果不配做则可能不进行压缩
+   - Accept-Language: 客户端需要什么样的语言，比如 en-US 和 zh-CN
+1. 如何得知某资源是否配置了 gzip/brotli 压缩
+   - 可以通过响应头 Content-Encoding 查看压缩编码
+1. 为什么在浏览器中发送的请求大都是 gzip 经压缩数据，而在 curl 直接发送请求时返回的是原始数据
+   - 浏览器会把自己支持的压缩算法传过去， 自动发送 Accept-Encoding: gzip, deflate, br
+   - curl 得自己配置
