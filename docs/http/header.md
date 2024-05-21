@@ -134,3 +134,19 @@ HTTP Header中， 逗号，拥有比分号；更高的优先级，根据逗号�
 1. 为什么在浏览器中发送的请求大都是 gzip 经压缩数据，而在 curl 直接发送请求时返回的是原始数据
    - 浏览器会把自己支持的压缩算法传过去， 自动发送 Accept-Encoding: gzip, deflate, br
    - curl 得自己配置
+
+## Content-Type
+
+> Conent-type 指定 Body 的媒体资源类型，如果是请求头，则代表请求体的资源类型，如果是响应头，则代表响应体的资源类型
+
+1. 请求头
+   - application/json
+   - application/x-www-form-urlencoded
+   - application/form-data
+1. 响应头
+   - text/html
+   - text/css
+   - application/javascript
+   - application/json
+   - text/javascript
+   - image/png、jpeg、jpg、webp、svg+xml
