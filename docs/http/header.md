@@ -150,3 +150,12 @@ HTTP Header中， 逗号，拥有比分号；更高的优先级，根据逗号�
    - application/json
    - text/javascript
    - image/png、jpeg、jpg、webp、svg+xml
+
+## User-Agent
+
+1. 在浏览器中如何判断当前环境是移动端还是 PC 端（ismobilejs）
+   - navigator.userAgent 获取设备信息，再通过 match 匹配是否存在移动端关键字（mobi、android、iphone、ipad、ipod）
+2. 在浏览器中如何判断当前环境是否在 iPhone 中
+   - navigator.userAgent 获取设备信息，再通过 match 匹配是否有 iPhone 关键字(match(/iPhone/i))
+3. 打点服务如何统计自己产品用户的各个浏览器版本的占比
+   - 用户进入产品时上报用户的渠道、平台、操作系统、浏览器类型、版本、用户唯一标识
