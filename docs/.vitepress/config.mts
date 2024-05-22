@@ -52,6 +52,7 @@ function getSidebar() {
         { text: "资源", link: "/http/resource" },
         { text: "报文", link: "/http/message" },
         { text: "头部", link: "/http/header" },
+        { text: "缓存", link: "/http/cache" },
       ],
       sidebarDepth: 3,
     },
