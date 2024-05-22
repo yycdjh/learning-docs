@@ -159,3 +159,27 @@ HTTP Header中， 逗号，拥有比分号；更高的优先级，根据逗号�
    - navigator.userAgent 获取设备信息，再通过 match 匹配是否有 iPhone 关键字(match(/iPhone/i))
 3. 打点服务如何统计自己产品用户的各个浏览器版本的占比
    - 用户进入产品时上报用户的渠道、平台、操作系统、浏览器类型、版本、用户唯一标识
+
+## Referer(Referrer)
+
+1. Referer 请求头有哪些使用场景
+   - 打点统计分析：由于 Referer 可以拿到网站的来源页面
+   - 防盗链：图片防盗链
+2. 图片防盗链的技术原理是什么
+   - 判断请求头的 Referer，如果请求头 Referer 不是自己的域名就禁止访问，返回 403 状态码
+3. 图片防盗链图片为何直接在浏览器新标签页手动输入地址可以打开
+   - 浏览器直接输入直接不会发送 referrer
+4. 你见过哪些添加了防盗链的网站
+   - 掘金
+5. 如何防止防盗链
+   - 不发送请求头 Referer
+
+```javascript
+// 不发送Referer 请求头
+Referrer-Policy: no-referrer
+
+//html
+<meta name="referrer" content="origin" />
+
+<meta name='referrer' content='no-referrer' />
+```
