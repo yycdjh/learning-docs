@@ -59,3 +59,12 @@ server.listen(3005, () => {
      Age：90
      Cache-Control:100
    ```
+
+## 启发式缓存
+
+1. 什么是启发式缓存
+   - 当对某资源没有配置 Cache-Control/Expires 强缓存响应头时，客户端将会根据以下两个响应头计算出合适的强缓存时间。
+     - Date：HTTP 报文在源服务器的产生时间
+     - Last-Modified：源服务器上资源的上次修改时间
+     - LM-Factor: 它处于[0, 1]之间
+     - 强制缓存时间 (Date - Last-Modified) \* n
