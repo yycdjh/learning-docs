@@ -25,7 +25,7 @@ class EventEmitter {
       const handler = this.handlers[eventName];
 
       handler.forEach((callback) => {
-        callback(args);
+        callback(...args);
       });
     }
   }
