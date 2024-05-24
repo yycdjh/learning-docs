@@ -68,3 +68,16 @@ server.listen(3005, () => {
      - Last-Modified：源服务器上资源的上次修改时间
      - LM-Factor: 它处于[0, 1]之间
      - 强制缓存时间 (Date - Last-Modified) \* n
+
+## 协商缓存响应头生成算法
+
+1. ETag 值是如何生成的
+   - 可以针对文件内容进行 hash 计算，得到的 hash 值作为 ETag（但从实现上来说，不会使用这样消耗大量 CPU 的 hash 技术）
+   - nginx 由响应头的 Last-Modified 与 Content-Length 表示为十六进制组合而成
+2. ETag 与 Last-Modified 有何区别
+   - ETag 拥有比 Last-Modified 更高的精确度
+   - Last-Modified 的局限性
+     - 时间精确度只有秒级，但某文件在一秒内被更改 n 次
+     - 某一文件经过修改之后内容未发生变化，比如添加一行在删除该行
+3. 如果 http 响应头中 ETag 值改变了，是否意味着文件内容一定已经改变
+   - 不一定，在 nginx 中，由响应头的 Last-Modified 与 Content-Length 表示为十六进制组合而成。而文件经过修改之后内容未发生变化，这个时候 Last-Modified 已经发生了改变从而 ETag 值也改变了。
