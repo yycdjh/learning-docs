@@ -81,3 +81,21 @@ server.listen(3005, () => {
      - 某一文件经过修改之后内容未发生变化，比如添加一行在删除该行
 3. 如果 http 响应头中 ETag 值改变了，是否意味着文件内容一定已经改变
    - 不一定，在 nginx 中，由响应头的 Last-Modified 与 Content-Length 表示为十六进制组合而成。而文件经过修改之后内容未发生变化，这个时候 Last-Modified 已经发生了改变从而 ETag 值也改变了。
+
+## 项目缓存策略
+
+1. 如何为项目中的资源配置缓存策略
+   - 对于 index.html 等不添加 hash 的资源，显示的配置 Cache-Control: no-cache(不配置会触发启发式缓存，造成应用升级但刷新不生效的问题)
+   - 对添加 hash 的资源，设置一年的强缓存时间：Cache-Control: max-age=31536000
+2. 查看自己经常浏览的网站，查看其配置缓存策略，主要查看其 Cache-Control 字段
+   - b 站对带有 hash 的 js、图片设置缓存时间为一年、对不带 hash 的设置缓存时间为 600 秒
+   - Cache-Control 还有两个指令 public 跟 private
+     - public: 表示响应可以被任何对象（包括：发送请求的客户端，代理服务器，等等）缓存。
+     - private: 表示响应只能被单个用户缓存，也就是说只能被发起请求的浏览器缓存，不允许 CDN 等中间代理服务器缓存这个响应。
+3. 如何可对带有 hash 的资源配置长期缓存
+   - 可在 nginx 配置正则匹配带有 hash 值的资源设置缓存时间
+   ```javascript
+    location ~* \.(?:ico|css|js|gif|jpeg|jpg|png|svg|woff|woff2|ttf|otf|eot)$ {
+      add_header Cache-Control "public max-age=31536000";
+    }
+   ```
