@@ -99,3 +99,71 @@ server.listen(3005, () => {
       add_header Cache-Control "public max-age=31536000";
     }
    ```
+
+## 各大网站缓存配置策略
+
+## Cache-Control 为请求头
+
+1. cache-control:no-cache 作为请求头以及响应头时分别是什么意思
+   - 请求头: 告诉服务器不要使用缓存的内容，表示即便在客户端拥有未过期的缓存，也要向服务器请求获取最新的资源
+   - 响应头：告诉客户端不要缓存这个响应的内容，即使客户端已经有了该资源的副本，也必须在下次请求时向服务器验证该资源是否有更新
+2. cache-control:no-cache 与 max-age=0 作为请求头有啥区别
+   - no-cache：表示即便在客户端拥有未过期的缓存，也要向服务器请求获取最新的资源，类似于响应头 Cache-Control： no-store
+   - max-age=0: 将会验证服务器资源的新鲜度，如果缓存未过期，则利用缓存，返回 304 状态码，否则重新获取资源返回 200 状态码
+3. 在浏览器控制台分别携带 cache-control 两种请求头发送请求，对比区别
+
+```javascript
+//200 OK (from disk cache)
+fetch("https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/57158e7.js", {
+  headers: {
+    "sec-ch-ua":
+      '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"Windows"',
+  },
+  referrer: "https://juejin.cn/",
+  referrerPolicy: "strict-origin-when-cross-origin",
+  body: null,
+  method: "GET",
+  mode: "cors",
+  credentials: "omit",
+});
+
+//304 Not Modified
+fetch("https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/57158e7.js", {
+  headers: {
+    "sec-ch-ua":
+      '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"Windows"',
+    "cache-control": "max-age=0",
+  },
+  referrer: "https://juejin.cn/",
+  referrerPolicy: "strict-origin-when-cross-origin",
+  body: null,
+  method: "GET",
+  mode: "cors",
+  credentials: "omit",
+});
+
+//200 OK
+fetch("https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/57158e7.js", {
+  headers: {
+    "sec-ch-ua":
+      '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"Windows"',
+    "cache-control": "no-cache",
+  },
+  referrer: "https://juejin.cn/",
+  referrerPolicy: "strict-origin-when-cross-origin",
+  body: null,
+  method: "GET",
+  mode: "cors",
+  credentials: "omit",
+});
+```
+
+3. 浏览器中的正常重新加载与硬性重新加载，观察控制台中 cache-control 请求头
+   - ctrl+r Cache-Control:max-age=0 304 Not Modified
+   - crtl+shift+r Cache-Control:no-store 200 OK
