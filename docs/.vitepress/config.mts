@@ -53,6 +53,7 @@ function getSidebar() {
         { text: "报文", link: "/http/message" },
         { text: "头部", link: "/http/header" },
         { text: "缓存", link: "/http/cache" },
+        { text: "跨域", link: "/http/cross" },
       ],
       sidebarDepth: 3,
     },
