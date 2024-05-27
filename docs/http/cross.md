@@ -21,3 +21,17 @@
 3. 如何避免过多 OPTIONS 请求造成的性能损耗
    - 利用简单请求
    - 利用反向代理避免跨域
+
+## 跨域的权限
+
+1. 在跨域时，服务端如何配置才能使 cookie 发送
+
+   - 配置响应头 access-control-allow-credentials:true
+   - 无法向配置 access-control-allow-origin: \* 的域名发送 Cookie
+
+2. 在跨域时，如何发送 cookie 权限信息
+
+   - 在使用 fetch 发送请求时，配置 credentials
+     - Omit: 从不发送 cookie
+     - Same-origin: 同源时发送 cookie
+     - include： 同源与跨域时都发送 cookie
