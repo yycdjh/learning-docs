@@ -59,7 +59,7 @@
      res.setHeader("Access-Control-Allow-Origin", requestOrigin);
      ```
 
-1. 如何避免 CDN 为 PC 端缓存移动端页面
+2. 如何避免 CDN 为 PC 端缓存移动端页面
    - 利用 Vary：User-Agent，不同的 User-Agent 应该在 CDN 中 创建并使用不同的缓存
-1. 如何避免 CDN 为中文版缓存英文版页面
+3. 如何避免 CDN 为中文版缓存英文版页面
    - 利用 Vary：Accept/Accept-Language ，不同的语言资源应该在 CDN 中创建并使用不同的缓存

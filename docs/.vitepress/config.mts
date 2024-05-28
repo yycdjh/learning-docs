@@ -54,6 +54,7 @@ function getSidebar() {
         { text: "头部", link: "/http/header" },
         { text: "缓存", link: "/http/cache" },
         { text: "跨域", link: "/http/cross" },
+        { text: "cookie", link: "/http/cookie" },
       ],
       sidebarDepth: 3,
     },
