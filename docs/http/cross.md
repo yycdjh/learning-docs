@@ -35,3 +35,31 @@
      - Omit: 从不发送 cookie
      - Same-origin: 同源时发送 cookie
      - include： 同源与跨域时都发送 cookie
+
+## 多域名跨域
+
+1. 如何配置多个域名允许跨域
+
+   - 根据 Origin 请求头来设置响应头 Access-Control-Allow-Origin
+   - 如果请求头不带有 Origin，证明未跨域，则不做任何处理
+   - 如果请求头带有 Origin，证明跨域，根据 Origin 设置相应的 Access-Control-Allow-Origin: `<Origin>`
+
+     - 避免多域名有缓存问题，得加上 Vary：Origin
+
+     ```javascript
+     // 获取Origin请求头
+     const requestOrigin = req.getHeader("Origin");
+
+     // 如果没有则跳过
+     if (!requestOrigin) {
+       return;
+     }
+
+     // 如果有，则动态设置响应头
+     res.setHeader("Access-Control-Allow-Origin", requestOrigin);
+     ```
+
+1. 如何避免 CDN 为 PC 端缓存移动端页面
+   - 利用 Vary：User-Agent，不同的 User-Agent 应该在 CDN 中 创建并使用不同的缓存
+1. 如何避免 CDN 为中文版缓存英文版页面
+   - 利用 Vary：Accept/Accept-Language ，不同的语言资源应该在 CDN 中创建并使用不同的缓存
