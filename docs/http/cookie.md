@@ -67,3 +67,35 @@
 
    - CSRF（Cross-site request forgery），跨站请求伪造
    - 设置 SameSite 的值为 Lax 或者 Strict,只在特定的情况发送 Cookie 或者不发送 Cookie 避免 CSRF 攻击
+
+## Cookie 的操作
+
+1. 如何通过 Javascript 添加 Cookie
+
+```javascript
+// 这样就会在cookie新增
+document.cookie = "a=3";
+```
+
+2. 如何通过 Javascript 删除 Cookie
+
+```javascript
+// 删除 cookie a
+document.cookie = "a=3;max-age=-1";
+```
+
+3. 如何通过 CookieStore API 增删改查 Cookie
+
+```javascript
+// 获取所有 cookie，返回一个数组对象
+await cookieStore.getAll();
+
+// 获取单独 key
+await cookieStore.get("key");
+
+// 新增/修改
+cookieStore.set("key", value);
+
+// 删除
+cookieStore.delete("key");
+```
