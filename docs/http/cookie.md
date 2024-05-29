@@ -41,3 +41,16 @@
     }
    }
    ```
+
+## Cookie 的属性
+
+1. Cookie 有哪些属性
+   - Domain： 为 Cookie 指定的域名
+   - Path：为 Cookie 指定的路径
+   - Expire/MaxAge: Cookie 在浏览器上的缓存时间
+   - HttpOnly： 无法通过 javascript 操作 Cookie，但在浏览器控制台中可以看到该值（可以避免 XSS 跨站脚本攻击）
+     - HttpOnly 仅仅能避免 XSS 对 Cookie 窃取的攻击，但 XSS 仍然可以执行脚本进行其他方面的攻击。避免 XSS 攻击的最有效方法是 CSP（内容安全策略），也是通过 HTTP 配置
+   - Secure： 仅能通过 HTTPS 协议传输
+   - SameSite： 跨站点 Cookie 发送策略（跨站点与跨域略有不同）
+2. Cookie HttpOnly 是什么意思
+   - 当在 Cookie 中开启了 HTTPOnly 属性后，这个 Cookie 就不能通过 JavaScript 的 document.cookie 以及一些其他客户端脚本进行访问了，只能通过 HTTP 请求头在服务端和客户端之间传递。
