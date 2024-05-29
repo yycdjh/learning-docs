@@ -54,3 +54,16 @@
    - SameSite： 跨站点 Cookie 发送策略（跨站点与跨域略有不同）
 2. Cookie HttpOnly 是什么意思
    - 当在 Cookie 中开启了 HTTPOnly 属性后，这个 Cookie 就不能通过 JavaScript 的 document.cookie 以及一些其他客户端脚本进行访问了，只能通过 HTTP 请求头在服务端和客户端之间传递。
+
+## SameSite Cookie
+
+1. SameSite 有哪些属性
+
+   - None：任何情况下都会向第三方网站请求发送 cookie
+   - Lax：只有导航到第三方网站的 Get 链接会发送 Cookie。而跨域的图片 iframe、fetch 请求、form POST 表单都不会发送 Cookie
+   - Strict：任何情况下都不会向第三方网站请求发送 Cookie
+
+2. 什么是 CSRF 攻击,如何通过 SameSite 避免 CSRF 攻击
+
+   - CSRF（Cross-site request forgery），跨站请求伪造
+   - 设置 SameSite 的值为 Lax 或者 Strict,只在特定的情况发送 Cookie 或者不发送 Cookie 避免 CSRF 攻击
