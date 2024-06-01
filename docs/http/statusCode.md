@@ -64,3 +64,21 @@ EagleId: b73ce41f17170327518343687e
 3. 浏览个人常用网站，找到 201/204/206 状态码请求
 4. 如何对某个资源进行范围请求，在 axios/fetch/request 等库中如何请求
    - 设置请求头`headers： { Range: 'bytes=0-999'}`
+
+## 301/302/307/308
+
+1. 301/302/307/308 状态码代表什么意思
+   - 301：Moved Permanently` 永久重定向，该操作比较危险，需要谨慎操作：如果设置了 301，但是一段时间后又想取消，但是浏览器中已经有了缓存，还是会重定向
+   - 302： Found , 临时重定向，但是会在重定向的时候改成 method： 把 POST 改成 GET，于是有了 307
+   - 307：Temporary Redirect, 临时重定向，在重定向时不会改变 method.但是有时你会发现谷歌浏览器中的描述语与 Temporary Redirect 不符合，一般是 Internal Redirect.(访问：http://github.com)
+   - 308: Permanent Redirect, 永久重定向，在重定向时不会改变 method
+2. 浏览个人常用网站，找到 301/302/307/308 状态码请求，并截图
+3. 301/302/307/308 有响应体吗
+   - 有
+4. 重定向后， 如何得知重定向的地址
+
+   - http 重定向之后，会使用 location 响应头来指明重定向后的地址
+
+5. fetch/curl 如何追踪重定向
+   - curl： curl --head --location
+   - fetch： { follow: 'redirect'}
