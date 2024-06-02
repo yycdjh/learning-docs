@@ -82,3 +82,17 @@ EagleId: b73ce41f17170327518343687e
 5. fetch/curl 如何追踪重定向
    - curl： curl --head --location
    - fetch： { follow: 'redirect'}
+
+## 40x
+
+1. 400/401/403/404/405/406 状态码代表什么意思
+   - 400（Bad request）: 对于服务器无法理解的参数，将会使用 400 作为返回码
+   - 401(Unauthorized)：当没有权限的用户请求需要带有权限的资源时，会返回 404，此时携带正确额权限凭证再试一次可以解决问题
+   - 403(Forbidden)：禁止访问
+   - 404(Not Found)：未找到资源
+   - 405(Method Not Allowed)：方法不被允许
+   - 406(Not Acceptable): 不接受，在客户端与服务器进行内容协商过程中，如果协商是吧，返回 406
+2. 浏览个人常用网站，找到 400/401/403/404/405 状态码请求，并截图
+3. 406 状态码有哪些应用场景
+   - 内容协商（Accept 请求头）
+   - 语言环境 （Accept-Language 请求头） -设备优化 （User-Agent 请求头）
