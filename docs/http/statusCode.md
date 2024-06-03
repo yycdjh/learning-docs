@@ -110,3 +110,21 @@ EagleId: b73ce41f17170327518343687e
 
    - 通常用于限流控制，第三方 API，比如 Github/Wechat/Feishu 等接口，他们会指定限流规则，比如某一用户一分钟只能调用接口 100 次
    - 会通过 X-RateLimit-XXX/Retry-After 等响应头提示你限流请求的剩余次数
+
+## 50x
+
+1. 500/502/503/504 状态码代表什么意思
+
+   - 500(Internal Server Error): 服务器内部错误
+   - 502(Bad Gateway): 错误网关
+   - 503(Service Unavailable): 服务不可用
+   - 504(Gateway Timeout): 网关超时
+
+2. 502 与 504 有何区别
+
+   - 这两种异常状态码都与网关 Gateway 有关，首先明确两个概念
+     - Proxy(Gateway):反向代理层或网关层，在公司级应用中一般使用 Nginx 扮演这个角色
+     - Application(Upstream server):应用层服务，作为 Proxy 层的上游服务。在公司中一般为各种语言编写的服务器应用，如 Go/Java/Python/PHP/Node 等
+   - 此时关于 502 与 504 的区别就很显而易见
+     - 502 Bad Gateway. 一般表现为你自己写的应用层服务(Go/Java/Python/PHP/Node)挂了，或者网关指定的上游服务直接指错了地址，网关层无法接到响应
+     - 504 Gateway Timeout. 一般表现为应用层服务超时，超过了 Gateway 配置的 Timeout，如查库操作耗时三分钟，超过了 Nginx 配置的超时时间
