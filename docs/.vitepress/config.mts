@@ -56,6 +56,7 @@ function getSidebar() {
         { text: "跨域", link: "/http/cross" },
         { text: "cookie", link: "/http/cookie" },
         { text: "状态码", link: "/http/statusCode" },
+        { text: "Body", link: "/http/body" },
       ],
       sidebarDepth: 3,
     },
