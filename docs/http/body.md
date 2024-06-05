@@ -81,3 +81,26 @@ curl -X POST httpbin.org/post -H "content-type: application/json" -d "{a:3,b:4}"
      ```
 
 3. 如何基于 fetch API 实现简单的类似 axios，使得对请求体简单封装
+
+## content-length
+
+1. 如何得知请求报文/响应报文已接收完毕
+   - 如果没指定 content-length， TCP 连接关闭时，数据就已经全部接受
+   - 如果指明了 content-length， 数据长度达到这个值时，即认为报文接收完毕
+2. 使用 Apifox Echo 测试请求头和响应头中的 Content-Length
+
+```javascript
+// 测试请求头中的content-length
+curl -I https://echo.apifox.com
+
+// 测试响应头中的content-length
+curl https://echo.apifox.com/response-headers?content-length=123
+{
+"Content-Length": [
+  "141",
+  "123"
+],
+"Content-Type": "application/json",
+"content-length": [
+  "141",
+```
