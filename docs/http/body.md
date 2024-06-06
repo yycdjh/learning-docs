@@ -104,3 +104,111 @@ curl https://echo.apifox.com/response-headers?content-length=123
 "content-length": [
   "141",
 ```
+
+## 请求体报文
+
+1. 用 nc 测试不同 Content-Type 的 POST 请求(window 可以用 ncat)
+
+```javascript
+// 未指定content-type
+ncat httpbin.org 80
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Length: 7
+
+a=3&b=4
+HTTP/1.1 200 OK
+Date: Thu, 06 Jun 2024 03:12:39 GMT
+Content-Type: application/json
+Content-Length: 299
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {},
+  "data": "a=3&b=4",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Content-Length": "7",
+    "Host": "httpbin.org",
+    "X-Amzn-Trace-Id": "Root=1-66612922-1804c24817394165455bb094"
+  },
+  "json": null,
+  "origin": "119.136.145.197",
+  "url": "http://httpbin.org/post"
+}
+
+// application/x-www-form-urlencoded
+ncat httpbin.org 80
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Length: 7
+Content-Type: application/x-www-form-urlencoded
+
+a=3&b=4
+HTTP/1.1 200 OK
+Date: Thu, 06 Jun 2024 03:23:07 GMT
+Content-Type: application/json
+Content-Length: 380
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {
+    "a": "3",
+    "b": "4"
+  },
+  "headers": {
+    "Content-Length": "7",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Host": "httpbin.org",
+    "X-Amzn-Trace-Id": "Root=1-66612b96-51a93cc854fd91ab05437119"
+  },
+  "json": null,
+  "origin": "119.136.145.14",
+  "url": "http://httpbin.org/post"
+}
+
+// application/json
+ncat httpbin.org 80
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Length: 7
+Content-Type: application/json
+
+{"a":3}
+HTTP/1.1 200 OK
+Date: Thu, 06 Jun 2024 03:27:37 GMT
+Content-Type: application/json
+Content-Length: 353
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {},
+  "data": "{\"a\":3}",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Content-Length": "7",
+    "Content-Type": "application/json",
+    "Host": "httpbin.org",
+    "X-Amzn-Trace-Id": "Root=1-66612ca0-1f6cdf77005af2b60f1680f8"
+  },
+  "json": {
+    "a": 3
+  },
+  "origin": "119.136.145.14",
+  "url": "http://httpbin.org/post"
+}
+```
