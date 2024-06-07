@@ -212,3 +212,58 @@ Access-Control-Allow-Credentials: true
   "url": "http://httpbin.org/post"
 }
 ```
+
+## 上传图片
+
+1. 什么是 Blob/File API，以及二者联系
+
+   - Blob API 用以在浏览器中模拟文件资源，在第二个参数中可指定 MIME Type
+   - File API 继承自 Blob,相对 Blob 而言，它多了上次修改时间 lastModified 以及文件名 name 两个属性
+
+2. 在上传文件时，如何获得 File 对象
+
+   - 在 input 框设置 onChange 可以在回调里面拿到 file 对象
+
+   ```javascript
+   <input type="file" onChange="change">
+
+   function change(e){
+      const file = e.target.files[0]
+   }
+   ```
+
+3. 如何上传图片
+
+```javascript
+<input type="file" onChange="change" accept="image/jpeg">
+
+function change(e){
+    const file = e.target.files[0]
+
+    //设置请求体
+    fetch('url',{
+        body: file,
+        headers：{
+            'content-type': 'image/jpeg'
+        }
+    })
+}
+```
+
+4. 如何上传 PDF
+
+```javascript
+<input type="file" onChange="change" accept=".pdf">
+
+function change(e){
+ const file = e.target.files[0]
+ let formData = new FormData()
+ formData.append('file', file)
+
+ //设置请求体
+ fetch('url',{
+     method: 'POST',
+     body: formData
+ })
+}
+```
