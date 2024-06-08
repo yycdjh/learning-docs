@@ -267,3 +267,27 @@ function change(e){
  })
 }
 ```
+
+## JSON API 上传图片
+
+1. 如何以 JSON API 的方式上传图片
+
+```javascript
+<input type="file" onChange="change" accept="image/jpeg">
+
+function change(e){
+  const file = e.target.files[0]
+  const unit8= new Unit8Array(file)
+  //设置请求体
+  fetch('url',{
+      body: JSON.stringify({
+          image: base64.fromByteArray(unit8),
+          title: '如何通过JSON上传图片',
+          author: 'jd'
+      }),
+      headers：{
+          'content-type': 'application/json'
+      }
+  })
+}
+```
