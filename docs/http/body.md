@@ -291,3 +291,8 @@ function change(e){
   })
 }
 ```
+
+## Form Data
+
+1. 使用 nc、httpie、curl 发送 Form Data 请求
+   - 发不出去
