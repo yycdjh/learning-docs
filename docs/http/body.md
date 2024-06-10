@@ -296,3 +296,60 @@ function change(e){
 
 1. 使用 nc、httpie、curl 发送 Form Data 请求
    - 发不出去
+
+## Form Data 上传图片
+
+1. 通过 FormData API 在浏览器上传图片
+
+```javascript
+<body>
+  <input type="file" accept="image/*" onchange="uploadFile(event)">
+
+  <script>
+
+    function uploadFile(e) {
+
+      const file = e.target.files[0];
+
+      const formData = new FormData();
+
+      formData.append('file', file);
+      formData.append('name', 'jd');
+
+      fetch('httpbin.org', {
+        method: 'POST',
+        body: formData
+      }).then(res => {
+        console.log(res);
+      })
+    }
+  </script>
+</body>
+```
+
+2. 通过 curl/httpie 上传图片
+
+```javascript
+curl httpbin.org/post --form a=3 --form b=4 --form image=./Desktop/qingwa.jpg
+{
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {
+    "a": "3",
+    "b": "4",
+    "image": "./Desktop/qingwa.jpg"
+  },
+  "headers": {
+    "Accept": "*/*",
+    "Content-Length": "366",
+    "Content-Type": "multipart/form-data; boundary=------------------------9SYian5r6X501ocWBEEqFl",
+    "Host": "httpbin.org",
+    "User-Agent": "curl/8.4.0",
+    "X-Amzn-Trace-Id": "Root=1-66665ec7-425bb1f1447e0ebf15d7d8a4"
+  },
+  "json": null,
+  "origin": "14.153.4.109",
+  "url": "http://httpbin.org/post"
+}
+```
