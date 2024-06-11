@@ -353,3 +353,47 @@ curl httpbin.org/post --form a=3 --form b=4 --form image=./Desktop/qingwa.jpg
   "url": "http://httpbin.org/post"
 }
 ```
+
+## 分段传输
+
+1. HTTP 客户端如何得知响应体（Response Body）已全部接受完毕呢？
+   - 通过 Content-Length 可知响应体大小，从而得知是否接受完毕
+   - 但是有一种情况无法得知 Content-Length，那便是服务器流式传输，也可以称为块式传输
+     - 响应头 transfer-encoding: chunked
+2. chunked 报文格式是什么样子？
+
+   - Length + CRLF + body +CRLF 为分段数据，其中 length 为 十六进制，指明了该段数据的大小
+   - 0CRLFCRLF 为最后一段，表明响应体已接收完毕
+
+   ```javascript
+   ncat httpbin.org 80
+   GET /stream/3 HTTP/1.1
+   Host: httpbin.org
+
+   HTTP/1.1 200 OK
+   Date: Tue, 11 Jun 2024 01:59:00 GMT
+   Content-Type: application/json
+   Transfer-Encoding: chunked
+   Connection: keep-alive
+   Server: gunicorn/19.9.0
+   Access-Control-Allow-Origin: *
+   Access-Control-Allow-Credentials: true
+
+   bb
+   {"url": "http://httpbin.org/stream/3", "args": {}, "headers": {"Host": "httpbin.org", "X-Amzn-Trace-Id": "Root=1-6667af6
+   4-72198a8c7bcaebab34b81312"}, "origin": "219.133.68.187", "id": 0}
+
+   bb
+   {"url": "http://httpbin.org/stream/3", "args": {}, "headers": {"Host": "httpbin.org", "X-Amzn-Trace-Id": "Root=1-6667af6
+   4-72198a8c7bcaebab34b81312"}, "origin": "219.133.68.187", "id": 1}
+
+   bb
+   {"url": "http://httpbin.org/stream/3", "args": {}, "headers": {"Host": "httpbin.org", "X-Amzn-Trace-Id": "Root=1-6667af6
+   4-72198a8c7bcaebab34b81312"}, "origin": "219.133.68.187", "id": 2}
+
+   0
+   ```
+
+```
+
+```
