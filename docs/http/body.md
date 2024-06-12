@@ -394,6 +394,88 @@ curl httpbin.org/post --form a=3 --form b=4 --form image=./Desktop/qingwa.jpg
    0
    ```
 
+## 分段传输示例
+
+1. 服务器代码流式传输 HTML，并在浏览器查看渲染效果
+
+```javascript
+import { createServer } from "http";
+
+const sleep = (seconds) =>
+  new Promise((resolve) => setTimeout(resolve, seconds));
+
+// Transfer-Encoding: chunked 是在何时进行配置的
+const server = createServer(async (req, res) => {
+  res.write(`
+        <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>测试页面</title>
+    </head>
+    <body>`);
+
+  await sleep(3000);
+  res.write("<h1>hello, jd</h1>");
+  await sleep(3000);
+  res.write("<div>这里是大段文字，将会延迟三秒才会正常渲染</div>");
+  await sleep(3000);
+  res.write("<div>这里又是大段文字，将会延迟三秒才会正常渲染</div>");
+  res.end(`
+    </body>
+    </html>
+  `);
+});
+
+server.listen(3000);
 ```
 
+2. 并通过 nc 查看流水传输效果(不行)
+
+```javascript
+ncat localhost 3000
+GET / HTTP/1.1
+
+HTTP/1.1 400 Bad Request
+Connection: close
+Date: Tue, 11 Jun 2024 08:35:22 GMT
+Transfer-Encoding: chunked
+
+//用curl可以
+curl -i localhost:3000
+HTTP/1.1 200 OK
+transfer-encoding: chunked
+Date: Wed, 12 Jun 2024 01:33:52 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+        <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>测试页面</title>
+    </head>
+    <body><h1>hello, jd</h1><div>这里是大段文字，将会延迟三秒才会正常渲染</div><div>这里又是大段文字，将会延迟三秒才会正
+常渲染</div>
+    </body>
+    </html>
+
+//用bash
+printf 'GET / HTTP/1.1\r\nHost: localhost\r\n\r\n' | ncat localhost 3000
+HTTP/1.1 200 OK
+Date: Wed, 12 Jun 2024 01:48:11 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+90
+
+        <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>测试页面</title>
+    </head>
+    <body>
 ```
