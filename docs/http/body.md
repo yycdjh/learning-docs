@@ -479,3 +479,57 @@ Transfer-Encoding: chunked
     </head>
     <body>
 ```
+
+## 大文件上传
+
+1. 如何实现大文件上传
+
+   - 分片上传 通过 blob.slice 切片上传
+
+   ```javascript
+   <body>
+   <input type="file" accept="image/*" onchange="uploadFile(event)">
+
+   <script>
+
+     async function uploadFile(e) {
+
+       const file = e.target.files[0];
+       const chunks = createChunks(file, 1024);
+       await uploadChunks(chunks)
+     }
+
+     function createChunks(blob, chunkSize) {
+       const chunks = [];
+       let id = 0;
+       let start = (id * chunkSize);
+       while (start < blob.size) {
+         chunks.push({
+           blob: blob.slice(start, start + chunkSize),
+           id: id
+         });
+         id++
+         start = (id * chunkSize)
+       }
+       return chunks;
+     }
+
+     async function uploadChunks(chunks) {
+       for (const chunk of chunks) {
+         const form = new FormData()
+         form.append('blob', chunk.blob)
+         form.append('id', chunk.id)
+
+         // 分片上传大文件
+         await fetch('http://localhost:3000/upload-bigfile', {
+           body: form,
+           method: 'post'
+         })
+       }
+       // 全部分片上传完成之后，可以通知服务器端合并所有分片
+       await fetch('http://localhost:3000/upload-bigfile/merge')
+     }
+   </script>
+
+   </body>
+   ```
