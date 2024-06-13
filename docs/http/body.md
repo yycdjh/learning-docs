@@ -533,3 +533,11 @@ Transfer-Encoding: chunked
 
    </body>
    ```
+
+## 断点续传
+
+1. 大文件上传如何实现断点续传
+
+```javascript
+待实现;
+```
