@@ -35,3 +35,31 @@
 3. 再 HTTPS 中为什么不一直都是用非对称加密进行传输数据加密
    - 因为非对称加密算法耗时较长、性能较差
    - 在 TSL 中，使用非对称加密仅仅传递对称加密的预主密钥，随后使用性能较好的对称加密进行通信
+
+## TLS 1.2 简述
+
+1. 说出 TLS 握手过程的每一步
+   - 客户端发送 Client Hello
+     - TLS 版本
+     - 密码套件
+     - Client Random
+   - 服务端发送 Server Hello
+     - 双方都支持的 TLS 版本
+     - 密码套件
+     - Server Random
+   - Certificate
+     - 服务端给客户端发送证书、身份验证及提供公钥
+   - Server key exchange
+     - 服务端给客户端发送密钥交换算法的一些参数
+   - Server finished
+   - Client key exchange
+     - 客户端给服务端发送密钥交换算法的一些参数
+     - 计算预主密钥（pre-master-secret）
+     - 双方根据 Cilent Random、Server Random、pre-master-secret 生成对称加密的秘钥
+   - Change cipher,change cipher spec
+     - 告知以后的消息开始对称加密通信
+   - Finished
+     - 加密消息并完整性验证、标志着握手阶段成功并结束
+   - Change cipher,change cipher spec
+     - 告知以后的消息开始对称加密通信、此时服务器通过秘钥交换算法拿到预主密钥、根据三个参数生成 master secret finished
+     - 加密消息并完整性验证、标志着握手阶段成功并结束
