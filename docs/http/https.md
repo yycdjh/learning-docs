@@ -73,3 +73,67 @@
      - TLS 1.3 只需要一个 TTL，而 TLS 1.2 需要两个 TTL
    - 安全
      - TLS 1.3 删除了一些不安全的密码套件，比如弃用了 AES 的 CBC 工资模式，采用能够保障前向安全的密码套件
+
+## 证书
+
+1. 浏览各大网站的证书，查看其 SAN 配置
+
+```javascript
+// 百度
+DNS 名称: baidu.com
+DNS 名称: baifubao.com
+DNS 名称: www.baidu.cn
+DNS 名称: www.baidu.com.cn
+DNS 名称: mct.y.nuomi.com
+DNS 名称: apollo.auto
+DNS 名称: dwz.cn
+DNS 名称: *.baidu.com
+DNS 名称: *.baifubao.com
+DNS 名称: *.baidustatic.com
+DNS 名称: *.bdstatic.com
+DNS 名称: *.bdimg.com
+DNS 名称: *.hao123.com
+DNS 名称: *.nuomi.com
+DNS 名称: *.chuanke.com
+DNS 名称: *.trustgo.com
+DNS 名称: *.bce.baidu.com
+DNS 名称: *.eyun.baidu.com
+DNS 名称: *.map.baidu.com
+DNS 名称: *.mbd.baidu.com
+DNS 名称: *.fanyi.baidu.com
+DNS 名称: *.baidubce.com
+DNS 名称: *.mipcdn.com
+DNS 名称: *.news.baidu.com
+DNS 名称: *.baidupcs.com
+DNS 名称: *.aipage.com
+DNS 名称: *.aipage.cn
+DNS 名称: *.bcehost.com
+DNS 名称: *.safe.baidu.com
+DNS 名称: *.im.baidu.com
+DNS 名称: *.baiducontent.com
+DNS 名称: *.dlnel.com
+DNS 名称: *.dlnel.org
+DNS 名称: *.dueros.baidu.com
+DNS 名称: *.su.baidu.com
+DNS 名称: *.91.com
+DNS 名称: *.hao123.baidu.com
+DNS 名称: *.apollo.auto
+DNS 名称: *.xueshu.baidu.com
+DNS 名称: *.bj.baidubce.com
+DNS 名称: *.gz.baidubce.com
+DNS 名称: *.smartapps.cn
+DNS 名称: *.bdtjrcv.com
+DNS 名称: *.hao222.com
+DNS 名称: *.haokan.com
+DNS 名称: *.pae.baidu.com
+DNS 名称: *.vd.bdstatic.com
+DNS 名称: *.cloud.baidu.com
+DNS 名称: click.hm.baidu.com
+DNS 名称: log.hm.baidu.com
+DNS 名称: cm.pos.baidu.com
+DNS 名称: wn.pos.baidu.com
+DNS 名称: update.pan.baidu.com
+```
+
+2. 浏览各大网站的证书，查看其证书链
+   ![alt text](certificate.png)
