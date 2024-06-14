@@ -58,6 +58,7 @@ function getSidebar() {
         { text: "状态码", link: "/http/statusCode" },
         { text: "Body", link: "/http/body" },
         { text: "安全", link: "/http/security" },
+        { text: "HTTPS", link: "/http/https" },
       ],
       sidebarDepth: 3,
     },
