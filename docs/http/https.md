@@ -137,3 +137,11 @@ DNS 名称: update.pan.baidu.com
 
 2. 浏览各大网站的证书，查看其证书链
    ![alt text](certificate.png)
+
+## CA
+
+1. 查看各大网站的证书 CA 都是哪些机构
+   - 百度：GlobalSign
+   - 掘金：DigiCert Global Root CA
+2. 简述 OCSP Stapling 的作用
+   - 即 OCSP 响应的缓存机制，是 OCSP 的一种扩展机制，服务器定期向 CA 发送 OCSP 请求进行缓存，当客户端向服务器进行 TLS 握手时，服务器将 OCSP 信息与证书一起发送给客户端，此时客户端就无需手动向 CA 发送请求，从而节省了时间
