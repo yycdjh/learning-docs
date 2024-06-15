@@ -59,6 +59,7 @@ function getSidebar() {
         { text: "Body", link: "/http/body" },
         { text: "安全", link: "/http/security" },
         { text: "HTTPS", link: "/http/https" },
+        { text: "HTTP/2", link: "/http/http2" },
       ],
       sidebarDepth: 3,
     },
