@@ -97,3 +97,8 @@ Server: bfe/1.0.8.18
    - HTTP/：当取消一个 HTTP 请求时，可以发送一个 RST_STREAM Frame,仅中止特定的流，而不影响同一个 TCP 连接中的其他流
 4. HTTP2 是如何进行多路复用的
    - 在 HTTP 连接上，可以同时并发存在多个 Stream,即多个请求同时请求并响应，这就是多路复用。多路复用通过 SETTINGS Frame 的 SETTINGS_MAX_CONCURRENT_STREAMS 来配置最大并发数
+
+## HPACK
+
+1. 简述 HPACK
+   - HPACK 就是 HTTP/2 中的首部压缩算法
