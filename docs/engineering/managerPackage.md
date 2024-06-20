@@ -16,3 +16,18 @@
 3. 如何知道新项目使用的哪个包管理器
    - 可以通过 package.json 的 packageManger 字段
    - .lock 文件
+
+## 3. 包管理器的确认
+
+1. 如何确定项目的包管理器
+   - 通过 package.json 中的 packageManamer
+   - 通过 lockfile
+     - 如果存在多个 lockfile
+       - 比较 lockfile 上次修改时间，以最后修改的为准
+       - 查看是否有 CI/CD，如果有跟着 CI/CD 中的包管理工具确认
+       - 查看是否有 Dockerfile，如果有跟着 Dockerfile 确认
+       - 查看是否有文档，如果有跟着文档找
+       - 找领导以及同事确认
+   - 借助工具：ni / npm i -g @antfu/ni
+2. 根据以上方法确认你们项目的包管理器
+   - npm->只有 package-lock.json
