@@ -42,3 +42,17 @@
 3. npx 工作原理是什么
    - npx 会在本地项目的 node_modules/.bin 递归目录(如果当前 node_modules/.bin 目录下无法找到，则去上一级 node_modules/.bin 目录下寻找）下的可执行文件
    - 如果 npx 在本地项目和全局安装包中都没有找到该命令，那么 npx 就会临时下载这个 npm 包，然后把入口点文件执行一次,临时下载的文件在执行后会被清理。不会将其添加到你的项目依赖或全局依赖中。
+
+## npm link 原理与调试
+
+1. 如何更好地去调试某些经编译的 package
+
+   - 使用 npm link 或 yarn link
+
+2. npm link 的原理是什么（以 rollup 为例）
+
+   - 当我们相中依赖 rollup，并 require/import 引入它时，我们将会在 node_modules/rollup 中寻找它。并通过 package.json 中的 exports/main 字段定位到具体文件。
+   - 我们可以将 rollup 源码下载到本地，并手动构建，生成 source-map,并将 node_modules/rollup 进行替换
+     - 在 rollup 源码目录，通过 npm run watch 进行构建，此时会生成带有 source-map 的构建文件
+     - 在 rollup 源码目录，执行 npm link, 它会自动寻找当前目录的 package.json 中的 name 字段，并创建全局目录的软链接至该项目
+     - 在自己项目，执行 npm link rollup，将会替换 node_modules/rollup，其软链接至全局目录
