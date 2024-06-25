@@ -56,3 +56,19 @@
      - 在 rollup 源码目录，通过 npm run watch 进行构建，此时会生成带有 source-map 的构建文件
      - 在 rollup 源码目录，执行 npm link, 它会自动寻找当前目录的 package.json 中的 name 字段，并创建全局目录的软链接至该项目
      - 在自己项目，执行 npm link rollup，将会替换 node_modules/rollup，其软链接至全局目录
+
+## node_modules 拓扑结构
+
+1. 目前版本 npm 的拓扑结构是什么
+   - 平铺结构
+     ![拓扑结构](structure.png)
+2. npm 平铺结构的 node_modules 仍然有什么问题
+   - 重复的依赖
+3. 使用 npm 安装依赖，观察 node_modules 结构以及 package-lock.json 文件对应关系
+   - node_modules 的结构就是 lock 文件 packages 下面的顺序
+     ![node_modules 结构以及 package-lock.json 文件对应关系](package.png)
+4. 找到你们项目中被安装了多次的重复依赖
+   - lodash
+5. 使用[pkg-size](https://pkg-size.dev)查看某个 npm 包的 install size 与 bundle size
+   - lodash install size 1.4mb
+   - lodash bundle size 73kb
