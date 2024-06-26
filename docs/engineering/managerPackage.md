@@ -72,3 +72,10 @@
 5. 使用[pkg-size](https://pkg-size.dev)查看某个 npm 包的 install size 与 bundle size
    - lodash install size 1.4mb
    - lodash bundle size 73kb
+
+## 幽灵依赖
+
+1. 什么是幽灵依赖，它会导致什么问题
+
+   - 如果一个 npm 包没有在 package.json 中声明而直接被项目所依赖，那么这个 npm 包就是幽灵依赖
+   - 幽灵依赖存在依赖缺失的问题
