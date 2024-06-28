@@ -95,3 +95,13 @@
 
    - 在 pnpm 中，每个依赖都有它自己的 node_modules。这种自我隔离的方式使得每一个项目或者模块都只能访问它们在 package.json 文件中声明的依赖，而不能访问其他未明确声明的依赖，即幽灵依赖，当你使用一个没有在 package.json 文件中声明的包，pnpm 将会引发错误
    - pnpm 使用一个被称为内容寻址的存储策略.每当你安装一个依赖时，pnpm 不会直接将其放在您项目的 node_modules 里。而是将它放在全局的存储区里，然后在你的项目的 node_modules 里创建一个指向全局存储区的链接，这种方式确保了一个特定版本的包，无论被多少个项目所依赖，只需要在全局存储区里存储一次，因此，不同的项目可以共享相同依赖的不同版本，无需重复下载和安装
+
+## pnpm 与 eslint
+
+1. 什么是 public-hoist-pattern，作用如何
+
+   - 在 pnpm 中可通过在.npmrc 配置 public-hoist-pattern，来决定忽略某些特定依赖的幽灵依赖
+
+2. 观察带有 pnpm 以及 eslint 两个 npm 包的 node_modules 的目录结构
+
+   -
