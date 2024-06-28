@@ -105,3 +105,11 @@
 2. 观察带有 pnpm 以及 eslint 两个 npm 包的 node_modules 的目录结构
 
    -
+
+## npmrc
+
+1. 修改 save-prefix 项，并安装 npm i react，查看其在 package.json 中的版本号
+2. 如何将 npm 仓库改为 cnpm 镜像源
+
+   - 在.npmrc 配置 registry=https://registry.npmmirror.com
+   - 或者执行 npm config set registry https://registry.npmmirror.com
