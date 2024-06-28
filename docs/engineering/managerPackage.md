@@ -113,3 +113,18 @@
 
    - 在.npmrc 配置 registry=https://registry.npmmirror.com
    - 或者执行 npm config set registry https://registry.npmmirror.com
+
+## npm ci
+
+1. npm ci 相比 npm i 有何优势
+
+   - 更安全，比如只修改了 package.json，但并未在开发环境 npm i 却直接上线，此时生产环境将会在提前上线失败，否则引入了未经测试环境的 npm 包，将可能会引发问题
+   - 更快速，在 npm 中，npm ci 针对 CI 环境做了优化，因此更加快速。而 npm i 无明显速度优势
+
+2. npm ci 将会在何种情况下安装失败
+
+   - 只修改了 package.json，但并未在开发环境 npm i 却直接上线，此时生产环境将会在提前上线失败，否则引入了未经测试环境的 npm 包，将可能会引发问题
+
+3. 如何判断是否在 ci 环境
+
+   - 在 pnpm 中，使用 ci-info 这个 npm 包判断是否在 CI 环境
