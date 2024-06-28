@@ -4,7 +4,7 @@
 
 1. 使用 httpbin 测试 json/form，并观察请求体
 
-```javacript
+```javascript
 curl -X POST httpbin.org/post -H "content-type: application/x-www-form-urlencoded" -d "a=3&b=4"
 {
 "args": {},
