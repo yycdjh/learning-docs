@@ -45,3 +45,5 @@
 3. npm install/pnpm install
    - npm install 将会下载符合 npm 包依赖的最新版本号，此时会存在两个 postcss，需手动 npm dedupe
    - pnpm install 可理解为自带 pnpm dedupe 过程，只会存在一个 postcss
+
+## 垫片: corejs
