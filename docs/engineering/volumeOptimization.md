@@ -47,3 +47,8 @@
    - pnpm install 可理解为自带 pnpm dedupe 过程，只会存在一个 postcss
 
 ## 垫片: corejs
+
+1. core-js 是一个模块化的标准库，包含了 ECMAScript 5、ECMAScript 6、ECMAScript 7、ECMAScript 8、ECMAScript 9、ECMAScript 10 方法，它的目的是让你能在所有 JavaScript 环境中尽可能方便的使用这些方法。
+2. 是一个 JavaScript 的垫片库（polyfill），让你能在老版本的 JavaScript 环境中使用最新的 JavaScript 特性。
+3. 在实际开发中，我们往往需要支持各种版本的浏览器，包括一些只兼容 ES5 语法的老版本浏览器，这时候我们在代码中如果使用了 ES6+ 的一些新特性，那在这些老浏览器上就无法运行。而 Babel 允许我们在开发时使用最新版本的 JavaScript 语法，但是它默认只转换新的 JavaScript 句法语法，而不转换新的 API，比如 Iterator、Generator、Set、Maps、Proxy、Promise 等全局对象，以及一些定义在全局对象上的方法（比如 Object.assign）都不会转码。
+4. 所以这个时候我们需要 core-js 来进行垫片填充，让我们写的代码能够在所有支持的浏览器版本上运行。
