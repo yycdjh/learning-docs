@@ -69,3 +69,8 @@
      - dead: 官方不再维护已过两年，比如：IE10
    - 浏览器版本号
      - chrome > 90: Chrome 大于 90 版本号的浏览器
+
+## Tree Shaking
+
+1. Tree Shaking 的原理是什么
+   - Tree Shaking 指基于 ES Module 进行静态分析，通过 AST 将用不到的函数进行移除，从而减小打包体积。
