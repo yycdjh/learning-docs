@@ -86,3 +86,44 @@
 4. 仅使用 canvas 优化图片，有哪些局限
    - 浏览器兼容问题
    - 性能问题
+
+## 图片体积运行时优化
+
+1. 编译时与运行时优化图片的区别在哪里
+
+   - 无响应式图片。无法将代码中的 img 标签转换为 picture 标签进行响应式图片
+   - 无高度、宽度优化。如在浏览器中图片的渲染高度为 100x100,但是图片真是大小为 1000x1000,将会浪费极大的体积
+   - 无小图片的 DataURL 处理
+   - 无域名图片的支持，域外图片不受编译控制
+
+2. 如何编写一个 Image 组件进行优化图片处理
+
+```javascript
+<template>
+  <div>
+    <template v-if="path.startWith('data')">
+      <img :src="path" />
+    </template>
+    <template v-else>
+      <picture>
+        <source :srcset="avifPath" type="image/avif" />
+        <source :srcset="webpPath" type="image/webp" />
+        <img :src="path" :width="width" :height="height" loading="lazy" />
+      </picture>
+    </template>
+  </div>
+</template>
+
+<script setup lang="ts">
+interface Props {
+  path: string;
+  width: number;
+  height: number;
+}
+// oss域名
+const avifPath = "path.avif";
+const webpPath = "path.webp";
+</script>
+
+<style scoped></style>
+```
