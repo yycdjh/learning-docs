@@ -127,3 +127,48 @@ const webpPath = "path.webp";
 
 <style scoped></style>
 ```
+
+## svg 体积压缩
+
+1. 如何在 webpack 中处理 svg 图片
+
+   - 借助 svgo，可以避免 base64 编码的同时，基于 AST 压缩其体积
+
+   ```javascript
+   const path = require("path");
+   const svgToMiniDataURI = require("mini-svg-data-uri");
+   const { optimize } = require("svgo");
+
+   module.exports = {
+     entry: "./src/index.js",
+     output: {
+       filename: "main.js",
+       path: path.resolve(__dirname, "dist"),
+     },
+     module: {
+       rules: [
+         {
+           test: /\.svg/,
+           type: "asset/inline",
+           generator: {
+             dataUrl: (content) => {
+               content = content.toString();
+               // svgo 的核心 API，进行 svg 压缩
+               const result = optimize(content);
+               return svgToMiniDataURI(result.data);
+             },
+           },
+         },
+       ],
+     },
+   };
+   ```
+
+2. 如何压缩 svg 图片
+   - 去除多余字符：空格，换行及在注释
+   - 压缩变量名，如 id 等
+   - SVG 特有的策略
+     - 去除绘制无关的标签。如`<title>`，与绘制图形无关，完全可以去掉
+     - 去掉 viewBox。在 svg 中，viewBox 与 width/height 有功能重合
+     - rect/circle/ellipse 等基本形状转化为更简洁的 path
+3. 你们项目中是如何处理 svg 图片的
