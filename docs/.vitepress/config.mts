@@ -44,6 +44,7 @@ function getSidebar() {
         { text: "认识包package", link: "/engineering/knowPackage" },
         { text: "包管理器", link: "/engineering/managerPackage" },
         { text: "体积优化", link: "/engineering/volumeOptimization" },
+        { text: "模块化", link: "/engineering/module" },
       ],
       sidebarDepth: 3,
     },
