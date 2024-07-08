@@ -10,3 +10,6 @@
    - 目前，如果一个文件以.cjs 结尾，则代表它是一个 commonjs 模块
 
 ## ES module
+
+1. 什么是 import(module)
+   - 动态加载模块 API
