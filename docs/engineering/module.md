@@ -13,3 +13,14 @@
 
 1. 什么是 import(module)
    - 动态加载模块 API
+
+## pure esm package
+
+1. 什么是 pure esm package
+
+   - 即纯粹的 esm 的 npm 包，无需中间编译为 cjs 的格式供使用。在它们的 package.jsom 中有 type: module
+
+2. esm package 与 cjs package 如何相互引用
+
+   - Commonjs 无法 require pure esm 的 npm 包，但是可以通过动态的 import()API 加载
+   - Esm 可以直接 import commonjs 的 npm 包
