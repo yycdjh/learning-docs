@@ -29,3 +29,22 @@
 
 1. 在 node.js 中，esm 如何处理与 cjs 的兼容性问题
    - ESM 将 module.export 的每一项都视为具名导出 named export
+
+## typescript 中 esm->cjs 编译
+
+1. 在 typescript 中是如何将 esm 转化为 cjs 的
+
+   - 在 tsconfig.json 配置
+
+   ```javascript
+   {
+     "compilerOptions": {
+       "module": "CommonJS",
+       "outDir": "./dist",
+     },
+     "include": ["./src/**/*"]
+   }
+   ```
+
+2. 编译后代码 Object。defineProperty(exports, "\_\_esModule", {value: true})；是何释义
+   - 标记该模块是一个 es 模块编译而来
