@@ -24,3 +24,8 @@
 
    - Commonjs 无法 require pure esm 的 npm 包，但是可以通过动态的 import()API 加载
    - Esm 可以直接 import commonjs 的 npm 包
+
+## ESM 中引入 CommonJS 规则
+
+1. 在 node.js 中，esm 如何处理与 cjs 的兼容性问题
+   - ESM 将 module.export 的每一项都视为具名导出 named export
