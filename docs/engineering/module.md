@@ -48,3 +48,14 @@
 
 2. 编译后代码 Object。defineProperty(exports, "\_\_esModule", {value: true})；是何释义
    - 标记该模块是一个 es 模块编译而来
+
+## typescript 中 esModuleInterop
+
+1. `__importDefault` 函数功能
+   - 兼容 commonjs，在 import commonjs 时，编译后会自动添加一个.default 属性。此时编译后的代码可正常工作
+2. `__importStar`函数功能
+   - 主要是用来处理 `import * as xxx from 'module'`语法。如果该模块是 commonjs 做了两件事
+     - 找到 module 的所有属性，并复制到 result 对象上
+     - `__importDefault`
+3. esModuleInterop 选项功能是如何作用的
+   - 选项允许你在类型检查时使用 ES6 import default 语法来导入没有 export default 的模块。
