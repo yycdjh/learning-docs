@@ -45,6 +45,7 @@ function getSidebar() {
         { text: "包管理器", link: "/engineering/managerPackage" },
         { text: "体积优化", link: "/engineering/volumeOptimization" },
         { text: "模块化", link: "/engineering/module" },
+        { text: "调试", link: "/engineering/test" },
       ],
       sidebarDepth: 3,
     },
