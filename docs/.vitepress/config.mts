@@ -100,6 +100,7 @@ function getSidebar() {
         { text: "防抖", link: "/handwriting/isDebounce" },
         { text: "节流", link: "/handwriting/isThrottle" },
         { text: "发布-订阅", link: "/handwriting/eventEmitter" },
+        { text: "js实现继承", link: "/handwriting/isInherit" },
       ],
 
       sidebarDepth: 3,

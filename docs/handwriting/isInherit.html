@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // function Coder() {
+    //   this.type = "Coder";
+    // }
+
+    // Coder.prototype.rap = function () {
+    //   console.log("rap");
+    // };
+
+    // function Yupi(name) {
+    //   this.name = name;
+    //   this.age = 18;
+    // }
+
+    // // 原型链继承
+    // Yupi.prototype = new Coder();
+    // Yupi.prototype.constructor = Yupi;
+
+    // // 
+    // const yupi = new Yupi("yupi");
+    // console.log(yupi);
+
+    // console.log(yupi.type = 'change');
+    // console.log(yupi.type);
+
+    // yupi.rap();
+
+    class Coder {
+      constructor() {
+        this.type = "Coder";
+      }
+
+      rap() {
+        console.log("rap");
+      }
+    }
+
+    class Yupi extends Coder {
+      constructor(name) {
+        super();
+        this.name = name;
+        this.age = 18;
+      }
+    }
+
+    const yupi = new Yupi("yupi");
+
+    console.log(yupi);
+
+    console.log(yupi.type);
+
+    yupi.rap();
+  </script>
+</body>
+
+</html>
