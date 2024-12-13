@@ -101,6 +101,7 @@ function getSidebar() {
         { text: "节流", link: "/handwriting/isThrottle" },
         { text: "发布-订阅", link: "/handwriting/eventEmitter" },
         { text: "js实现继承", link: "/handwriting/isInherit" },
+        { text: "斐波那契数列", link: "/handwriting/fibonacci" },
       ],
 
       sidebarDepth: 3,
