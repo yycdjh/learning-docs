@@ -102,6 +102,7 @@ function getSidebar() {
         { text: "发布-订阅", link: "/handwriting/eventEmitter" },
         { text: "js实现继承", link: "/handwriting/isInherit" },
         { text: "斐波那契数列", link: "/handwriting/fibonacci" },
+        { text: "出现最多的单词", link: "/handwriting/words" },
       ],
 
       sidebarDepth: 3,
