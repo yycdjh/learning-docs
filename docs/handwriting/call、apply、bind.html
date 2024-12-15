@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    Function.prototype.myCall = function (thisArg, ...args) {
+      // 这里的this指的是 调用此方法的函数， 确保this是一个函数
+      if (typeof this !== "function") {
+        throw new TypeError(this + "is not a function");
+      }
+
+      // 处理thisarg, 如果为null或者undefined 则指向全局
+      thisArg = thisArg || globalThis;
+
+      // 创建唯一属性
+      const fnSymbol = Symbol();
+
+      // 将此函数作为thisArg的属性
+      thisArg[fnSymbol] = this;
+
+      // 调用函数并返回结果
+      const result = thisArg[fnSymbol](...args);
+
+      // 删除临时属性
+      delete thisArg[fnSymbol];
+
+      return result;
+    };
+
+
+    Function.prototype.myApply = function (thisArg, argsArray) {
+      // 这里的this指的是 调用此方法的函数， 确保this是一个函数
+      if (typeof this !== "function") {
+        throw new TypeError(this + "is not a function");
+      }
+
+      // 处理thisarg, 如果为null或者undefined 则指向全局
+      thisArg = thisArg || globalThis;
+
+      // 创建唯一属性
+      const fnSymbol = Symbol();
+
+      // 将此函数作为thisArg的属性
+      thisArg[fnSymbol] = this;
+
+      // 调用函数并返回结果
+      const result = thisArg[fnSymbol](...argsArray);
+
+      // 删除临时属性
+      delete thisArg[fnSymbol];
+
+      return result;
+    };
+
+    Function.prototype.myBind = function (obj, ...args) {
+      // return (...rest) => this.call(obj, ...args, ...rest);
+      return (...rest) => this.apply(obj, [...args, ...rest]);
+    };
+
+    const obj = {
+      name: 'jd'
+    }
+
+
+    function greet(greeting, punctuation) {
+      console.log(`${greeting}, ${this.name}${punctuation}`);
+    }
+
+    const boundGreet = greet.myBind(obj, 'Hello');
+
+    greet.myCall(obj, 'Hello', '!');
+    greet.myApply(obj, ['Hello', '!']);
+    boundGreet('!')
+  </script>
+</body>
+
+</html>

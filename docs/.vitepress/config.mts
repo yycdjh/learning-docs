@@ -103,6 +103,9 @@ function getSidebar() {
         { text: "js实现继承", link: "/handwriting/isInherit" },
         { text: "斐波那契数列", link: "/handwriting/fibonacci" },
         { text: "出现最多的单词", link: "/handwriting/words" },
+        { text: "call", link: "/handwriting/call" },
+        { text: "apply", link: "/handwriting/apply" },
+        { text: "bind", link: "/handwriting/bind" },
       ],
 
       sidebarDepth: 3,
