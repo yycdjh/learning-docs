@@ -68,7 +68,17 @@ function getSidebar() {
     },
     {
       text: "算法",
-      items: [{ text: "数组", link: "" }],
+      items: [
+        {
+          text: "数组",
+          items: [
+            { text: "二分法", link: "/algorithm/dichotomy" },
+            { text: "快慢指针", link: "/algorithm/27" },
+            { text: "双指针", link: "/algorithm/977" },
+            { text: "滑动窗口", link: "/algorithm/977" },
+          ],
+        },
+      ],
       sidebarDepth: 3,
     },
     {
