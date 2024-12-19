@@ -78,6 +78,17 @@ function getSidebar() {
             { text: "滑动窗口", link: "/algorithm/977" },
           ],
         },
+        {
+          text: "链表",
+          items: [
+            { text: "移出链表元素", link: "/algorithm/203" },
+            { text: "设计链表", link: "/algorithm/707" },
+            { text: "翻转链表", link: "/algorithm/206" },
+            { text: "两两交换链表中的节点", link: "/algorithm/24" },
+            { text: "删除链表的倒数第N个节点", link: "/algorithm/206" },
+            { text: "环形链表", link: "/algorithm/206" },
+          ],
+        },
       ],
       sidebarDepth: 3,
     },
