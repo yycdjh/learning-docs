@@ -85,8 +85,15 @@ function getSidebar() {
             { text: "设计链表", link: "/algorithm/707" },
             { text: "翻转链表", link: "/algorithm/206" },
             { text: "两两交换链表中的节点", link: "/algorithm/24" },
-            { text: "删除链表的倒数第N个节点", link: "/algorithm/206" },
-            { text: "环形链表", link: "/algorithm/206" },
+            { text: "删除链表的倒数第N个节点", link: "/algorithm/19" },
+            { text: "环形链表", link: "/algorithm/142" },
+          ],
+        },
+        {
+          text: "哈希表",
+          items: [
+            { text: "有效的字母异位词", link: "/algorithm/242" },
+            { text: "两个数组的交集", link: "/algorithm/349" },
           ],
         },
       ],
