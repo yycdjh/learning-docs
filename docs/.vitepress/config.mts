@@ -94,6 +94,9 @@ function getSidebar() {
           items: [
             { text: "有效的字母异位词", link: "/algorithm/242" },
             { text: "两个数组的交集", link: "/algorithm/349" },
+            { text: "两数之和", link: "/algorithm/1" },
+            { text: "四数相加", link: "/algorithm/454" },
+            { text: "三数相加", link: "/algorithm/15" },
           ],
         },
       ],
