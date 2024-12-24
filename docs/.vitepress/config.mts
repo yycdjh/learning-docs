@@ -96,7 +96,15 @@ function getSidebar() {
             { text: "两个数组的交集", link: "/algorithm/349" },
             { text: "两数之和", link: "/algorithm/1" },
             { text: "四数相加", link: "/algorithm/454" },
-            { text: "三数相加", link: "/algorithm/15" },
+            { text: "三数之和", link: "/algorithm/15" },
+            { text: "四数之和", link: "/algorithm/18" },
+          ],
+        },
+        {
+          text: "字符串",
+          items: [
+            { text: "反转字符串", link: "/algorithm/344" },
+            { text: "反转字符串II", link: "/algorithm/541" },
           ],
         },
       ],
