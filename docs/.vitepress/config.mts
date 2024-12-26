@@ -105,6 +105,8 @@ function getSidebar() {
           items: [
             { text: "反转字符串", link: "/algorithm/344" },
             { text: "反转字符串II", link: "/algorithm/541" },
+            { text: "翻转字符串里的单词", link: "/algorithm/151" },
+            { text: "重复的子字符串", link: "/algorithm/451" },
           ],
         },
       ],
