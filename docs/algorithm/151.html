@@ -9,60 +9,80 @@
 
 <body>
   <script>
-    function reverseWords(s) {
+    // function reverseWords(s) {
 
-      let strArr = s.split('')
-      removeSpaces(strArr)
-      let length = strArr.length
-      // 翻转整个字符串
-      reverseWords1(strArr, 0, length - 1)
-      console.log(strArr)
-      // 翻转单个单词
-      let start = 0
-      let end = 0
-      while (start < length) {
-        debugger
-        end = start
-        while (strArr[end] !== ' ' && end < length) {
-          end++
-        }
-        reverseWords1(strArr, start, end - 1)
-        start = end + 1
+    //   let strArr = s.split('')
+    //   removeSpaces(strArr)
+    //   let length = strArr.length
+    //   // 翻转整个字符串
+    //   reverseWords1(strArr, 0, length - 1)
+    //   console.log(strArr)
+    //   // 翻转单个单词
+    //   let start = 0
+    //   let end = 0
+    //   while (start < length) {
+    //     debugger
+    //     end = start
+    //     while (strArr[end] !== ' ' && end < length) {
+    //       end++
+    //     }
+    //     reverseWords1(strArr, start, end - 1)
+    //     start = end + 1
+    //   }
+
+    //   return strArr.join('')
+    // };
+
+    // function removeSpaces(s) {
+    //   let slow = 0
+    //   for (let fast = 0; fast < s.length; fast++) {
+    //     if (s[fast] !== ' ') {
+    //       if (slow !== 0) {
+    //         s[slow] = ' '
+    //         slow++
+    //       }
+    //       while (fast < s.length && s[fast] !== ' ') {
+    //         s[slow] = s[fast]
+    //         fast++
+    //         slow++
+    //       }
+    //     }
+    //   }
+    //   s.length = s[slow - 1] === '' ? slow - 1 : slow
+    // }
+
+    // function reverseWords1(s, start, end) {
+    //   let left = start
+    //   let right = end
+    //   while (left < right) {
+    //     let temp = s[right]
+    //     s[right] = s[left]
+    //     s[left] = temp
+    //     left++
+    //     right--
+    //   }
+    // }
+    // console.log(reverseWords("Let's take LeetCode contest"))
+    function repeatedSubstringPattern(s) {
+      let ss = s + s
+      console.log(ss)
+      let sArr = ss.split('')
+      console.log(sArr)
+      sArr.pop()
+      console.log(sArr)
+
+      sArr.shift()
+      console.log(sArr)
+
+      let a = sArr.join('')
+      console.log(a)
+      if (a.includes(s)) {
+        return true
       }
-
-      return strArr.join('')
+      return false
     };
 
-    function removeSpaces(s) {
-      let slow = 0
-      for (let fast = 0; fast < s.length; fast++) {
-        if (s[fast] !== ' ') {
-          if (slow !== 0) {
-            s[slow] = ' '
-            slow++
-          }
-          while (fast < s.length && s[fast] !== ' ') {
-            s[slow] = s[fast]
-            fast++
-            slow++
-          }
-        }
-      }
-      s.length = s[slow - 1] === '' ? slow - 1 : slow
-    }
-
-    function reverseWords1(s, start, end) {
-      let left = start
-      let right = end
-      while (left < right) {
-        let temp = s[right]
-        s[right] = s[left]
-        s[left] = temp
-        left++
-        right--
-      }
-    }
-    console.log(reverseWords("Let's take LeetCode contest"))
+    console.log(repeatedSubstringPattern('ab'))
   </script>
 </body>
 

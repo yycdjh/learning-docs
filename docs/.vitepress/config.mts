@@ -109,6 +109,13 @@ function getSidebar() {
             { text: "重复的子字符串", link: "/algorithm/459" },
           ],
         },
+        {
+          text: "栈与队列",
+          items: [
+            { text: "用栈实现队列", link: "/algorithm/232" },
+            { text: "用队列实现栈", link: "/algorithm/225" },
+          ],
+        },
       ],
       sidebarDepth: 3,
     },
