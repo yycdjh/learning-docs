@@ -114,6 +114,8 @@ function getSidebar() {
           items: [
             { text: "用栈实现队列", link: "/algorithm/232" },
             { text: "用队列实现栈", link: "/algorithm/225" },
+            { text: "有效的括号", link: "/algorithm/20" },
+            { text: "删除字符串中的所有相邻重复项", link: "/algorithm/1047" },
           ],
         },
       ],
