@@ -63,26 +63,56 @@
     //   }
     // }
     // console.log(reverseWords("Let's take LeetCode contest"))
-    function repeatedSubstringPattern(s) {
-      let ss = s + s
-      console.log(ss)
-      let sArr = ss.split('')
-      console.log(sArr)
-      sArr.pop()
-      console.log(sArr)
+    // function repeatedSubstringPattern(s) {
+    //   let ss = s + s
+    //   console.log(ss)
+    //   let sArr = ss.split('')
+    //   console.log(sArr)
+    //   sArr.pop()
+    //   console.log(sArr)
 
-      sArr.shift()
-      console.log(sArr)
+    //   sArr.shift()
+    //   console.log(sArr)
 
-      let a = sArr.join('')
-      console.log(a)
-      if (a.includes(s)) {
-        return true
+    //   let a = sArr.join('')
+    //   console.log(a)
+    //   if (a.includes(s)) {
+    //     return true
+    //   }
+    //   return false
+    // };
+
+    // console.log(repeatedSubstringPattern('ab'))
+    function evalRPN(tokens) {
+      let stack = []
+      const operatorObj = {
+        '+': '+',
+        '-': '-',
+        '*': '*',
+        '/': '/'
       }
-      return false
-    };
+      const operator = {
+        '+': (a, b) => a + b,
+        '-': (a, b) => a - b,
+        '*': (a, b) => a * b,
+        '/': (a, b) => a / b
+      }
 
-    console.log(repeatedSubstringPattern('ab'))
+      for (let i = 0; i < tokens.length; i++) {
+        if (operatorObj[tokens[i]]) {
+          let temp1 = stack.pop()
+          let temp2 = stack.pop()
+          stack.push(operator[tokens[i]](Number(temp2), Number(temp1)))
+        } else {
+          stack.push(tokens[i])
+        }
+      }
+
+      let result = stack.pop()
+
+      return Number(result)
+    };
+    console.log(evalRPN(["4", "13", "5", "/", "+"]))
   </script>
 </body>
 
